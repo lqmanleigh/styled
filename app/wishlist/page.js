@@ -1,62 +1,32 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function WishlistPage() {
-  const isGuest = true; // Simulate guest mode
+  const { status } = useSession();
+  const router = useRouter();
 
-  if (isGuest) {
-    return (
-      <main className="flex flex-col min-h-screen bg-green-50 text-gray-800">
-        <div className="flex-grow flex flex-col items-center justify-center text-center px-6">
-          <Image
-            src="/images/login-required.png"
-            alt="Sign In Required"
-            width={180}
-            height={180}
-            className="mb-6 opacity-90"
-          />
-          <h1 className="text-3xl font-bold mb-3">Wishlist Locked</h1>
-          <p className="text-gray-600 mb-6 max-w-md">
-            You need to sign in to save and view your favorite items. Don’t miss
-            out on your personalized picks!
-          </p>
-
-          <div className="flex gap-4">
-            <Link
-              href="/login"
-              className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/shop"
-              className="border border-green-600 text-green-700 px-6 py-3 rounded-lg hover:bg-green-100"
-            >
-              Continue as Guest
-            </Link>
-          </div>
-        </div>
-
-        {/* Trending Preview */}
-        
-
-        <footer className="bg-white py-6 text-center text-gray-500 border-t">
-          © {new Date().getFullYear()} Style’d — All Rights Reserved
-        </footer>
-      </main>
-    );
-  }
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.replace("/user/wishlist");
+    }
+  }, [status, router]);
 
   return (
     <main className="flex flex-col min-h-screen bg-green-50 text-gray-800">
-      <div className="flex-grow px-10 py-12">
-        <h1 className="text-3xl font-bold mb-6">Your Wishlist</h1>
-        <p className="text-gray-600">You have no saved items yet.</p>
+      <div className="flex-grow flex flex-col items-center justify-center text-center px-6">
+        <Image src="/images/login-required.png" alt="Sign In Required" width={180} height={180} className="mb-6 opacity-90" />
+        <h1 className="text-3xl font-bold mb-3">Wishlist Locked</h1>
+        <p className="text-gray-600 mb-6 max-w-md">You need to sign in to save and view your favorite items. Don't miss out on your personalized picks!</p>
+        <div className="flex gap-4">
+          <Link href="/login?callbackUrl=/user/wishlist" className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Sign In</Link>
+          <Link href="/shop" className="border border-green-600 text-green-700 px-6 py-3 rounded-lg hover:bg-green-100">Continue as Guest</Link>
+        </div>
       </div>
-      <footer className="bg-white py-6 text-center text-gray-500 border-t">
-        © {new Date().getFullYear()} Style’d — All Rights Reserved
-      </footer>
+      <footer className="bg-white py-6 text-center text-gray-500 border-t">(c) {new Date().getFullYear()} Styled - All rights reserved.</footer>
     </main>
   );
 }

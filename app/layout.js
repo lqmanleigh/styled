@@ -1,19 +1,26 @@
-import { Inter } from 'next/font/google'
-import './output.css'  // ✅ use compiled CSS, not raw globals.css
+// app/layout.js
 
-const inter = Inter({ subsets: ['latin'] })
+import './globals.css';  // Tailwind directives (processed via PostCSS)
+
+import { Inter } from 'next/font/google';
+import SessionProviderWrapper from './SessionProviderWrapper';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'YourApp - Welcome',
-  description: 'Your amazing application description',
-}
+  title: 'Styled - Welcome',
+  description: 'Fashion discovery with contextual insights',
+};
+
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <SessionProviderWrapper>
+          {children}
+        </SessionProviderWrapper>
       </body>
     </html>
-  )
+  );
 }
