@@ -27,7 +27,6 @@ export default function Layout({ children }) {
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/shop">Shop</Link>
-          <Link href="/blog">Blog</Link>
           <Link href="/contact">Contact</Link>
           <Link href={wishlistHref} className="font-semibold text-green-600">Wishlist</Link>
         </nav>

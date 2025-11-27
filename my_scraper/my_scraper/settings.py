@@ -23,6 +23,7 @@ ROBOTSTXT_OBEY = True
 
 # Concurrency and throttling settings
 #CONCURRENT_REQUESTS = 16
+# Reasonable defaults for politeness
 CONCURRENT_REQUESTS_PER_DOMAIN = 1
 DOWNLOAD_DELAY = 1
 
@@ -94,7 +95,12 @@ DOWNLOAD_HANDLERS = {
 
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
-# Optional: delay between requests (to avoid bans)
-DOWNLOAD_DELAY = 1
-CONCURRENT_REQUESTS_PER_DOMAIN = 1
+# Playwright tuning
+PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30000  # 30s
+PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": True}
+
+# (Optional) FEEDS output – enable if you want default file output
+# FEEDS = {
+#     "products.json": {"format": "json", "encoding": "utf8", "indent": 2},
+# }
 
