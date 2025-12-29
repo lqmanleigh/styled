@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const howSteps = [
   {
@@ -23,6 +24,10 @@ const howSteps = [
 
 export default function HomePage() {
   const [stepIndex, setStepIndex] = useState(0);
+  const { data: session, status } = useSession();
+  const [events, setEvents] = useState([]);
+  const [calendarStatus, setCalendarStatus] = useState("idle"); // idle | loading | connected | disconnected | error
+  const [calendarError, setCalendarError] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -30,6 +35,31 @@ export default function HomePage() {
     }, 4500);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (status !== "authenticated") return;
+    setCalendarStatus("loading");
+    setCalendarError("");
+
+    fetch("/api/calendar/events")
+      .then(async (res) => {
+        const data = await res.json().catch(() => ({}));
+        if (res.status === 404) {
+          setCalendarStatus("disconnected");
+          setEvents([]);
+          return;
+        }
+        if (!res.ok) {
+          throw new Error(data?.error || "Failed to load calendar events");
+        }
+        setEvents(data.events || []);
+        setCalendarStatus(data.connected ? "connected" : "disconnected");
+      })
+      .catch((err) => {
+        setCalendarStatus("error");
+        setCalendarError(err.message || "Something went wrong");
+      });
+  }, [status]);
 
   const current = howSteps[stepIndex];
 
@@ -124,6 +154,53 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Calendar & occasions for signed-in users */}
+      {status === "authenticated" && (
+        <section className="px-10 py-12 bg-white">
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+            <div>
+              <h3 className="text-2xl font-bold text-green-700">Your Upcoming Events</h3>
+              <p className="text-gray-600 text-sm">Pulled from your connected Google Calendar.</p>
+            </div>
+            <Link
+              href="/api/google-calendar/auth"
+              className="text-sm px-4 py-2 border border-green-600 text-green-700 rounded hover:bg-green-50"
+            >
+              {calendarStatus === "connected" ? "Reconnect Calendar" : "Connect Calendar"}
+            </Link>
+          </div>
+
+          {calendarStatus === "loading" && <p className="text-gray-500">Fetching events…</p>}
+          {calendarStatus === "error" && (
+            <p className="text-red-600 text-sm">Could not load events: {calendarError}</p>
+          )}
+          {calendarStatus === "disconnected" && (
+            <p className="text-gray-600 text-sm">
+              No calendar connected. Connect to see your upcoming occasions.
+            </p>
+          )}
+          {calendarStatus === "connected" && events.length === 0 && (
+            <p className="text-gray-600 text-sm">No upcoming events in the next 7 days.</p>
+          )}
+          {calendarStatus === "connected" && events.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {events.map((event) => (
+                <div key={event.id} className="border rounded-lg p-4 bg-green-50/60">
+                  <p className="text-xs uppercase text-gray-500 mb-1">
+                    {event.start ? new Date(event.start).toLocaleString() : "No start"}
+                  </p>
+                  <h4 className="text-lg font-semibold text-gray-800">{event.summary}</h4>
+                  {event.location && <p className="text-sm text-gray-600 mt-1">{event.location}</p>}
+                  <span className="inline-block mt-3 text-xs px-2 py-1 rounded-full bg-green-100 text-green-700 border border-green-200">
+                    Occasion: {event.occasionLabel || "general"}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="bg-white py-6 text-center text-gray-500 border-t">(c) {new Date().getFullYear()} Styled - All rights reserved.</footer>

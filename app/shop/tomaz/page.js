@@ -1,18 +1,14 @@
 import Layout from "../../components/Layout";
 import Image from "next/image";
 import Link from "next/link";
-import { readFile } from "fs/promises";
-import path from "path";
+import AddToWishlistButton from "../../components/AddToWishlistButton";
+import prisma from "@/lib/prisma";
 
 async function loadProducts() {
-  const file = path.join(process.cwd(), "my_scraper", "tomaz.json");
-  try {
-    const raw = await readFile(file, "utf8");
-    const data = JSON.parse(raw);
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
+  return prisma.product.findMany({
+    where: { brand: "Tomaz" },
+    orderBy: { name: "asc" },
+  });
 }
 
 export default async function TomazShopPage() {
@@ -69,16 +65,19 @@ export default async function TomazShopPage() {
                 <div className="p-5 text-center">
                   <div className="text-xs uppercase text-green-600 font-semibold mb-1">Tomaz</div>
                   <h2 className="text-lg font-semibold line-clamp-2 min-h-[3rem]">{item.name || "Untitled"}</h2>
-                  {item.url && (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
-                    >
-                      View product
-                    </a>
-                  )}
+                  <div className="mt-4 space-y-2">
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-block w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+                      >
+                        View product
+                      </a>
+                    )}
+                    <AddToWishlistButton productId={item.id} label={item.name || "Tomaz item"} />
+                  </div>
                 </div>
               </div>
             ))
