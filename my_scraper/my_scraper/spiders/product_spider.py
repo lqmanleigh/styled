@@ -1,10 +1,20 @@
 import scrapy
 from scrapy_playwright.page import PageMethod
+from datetime import datetime
 
 
 class ProductsSpider(scrapy.Spider):
     name = "products"
-    start_urls = ["https://locallab.com.my/collections/aegis"]
+
+    def __init__(self, scrape_time=None, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        now = datetime.now()
+        self.scrape_time = scrape_time or now.isoformat()
+        self.scrape_date = now.strftime("%Y-%m-%d")
+        self.scrape_run_id = now.strftime("%Y%m%d_%H%M%S")
+        self.start_urls = [
+            "https://locallab.com.my/collections/aegis",
+        ]
 
     def start_requests(self):
         for url in self.start_urls:
@@ -13,7 +23,6 @@ class ProductsSpider(scrapy.Spider):
                 callback=self.parse_products,
                 meta={
                     "playwright": True,
-                    # Ensure content is loaded before parsing
                     "playwright_page_methods": [
                         PageMethod("wait_for_selector", "div.product-card__figure", timeout=30000)
                     ],
@@ -21,13 +30,9 @@ class ProductsSpider(scrapy.Spider):
             )
 
     def parse_products(self, response):
-        # Extract product cards (adjust selectors as needed)
         cards = response.css("div.product-card__figure, div.product-card, div.grid-product")
         for product in cards:
-            name = (
-                product.css("img::attr(alt)").get()
-                or product.css("a::attr(title)").get()
-            )
+            name = product.css("img::attr(alt)").get() or product.css("a::attr(title)").get()
             img = (
                 product.css("img::attr(src)").get()
                 or product.css("img::attr(data-src)").get()
@@ -39,9 +44,12 @@ class ProductsSpider(scrapy.Spider):
                 "name": (name or "").strip() or None,
                 "image": response.urljoin(img) if img else None,
                 "url": response.urljoin(href) if href else None,
+                "category": "streetwear",
+                "scraped_at": self.scrape_time,
+                "scrape_date": self.scrape_date,
+                "scrape_run_id": self.scrape_run_id,
             }
 
-        # Follow pagination if present
         next_url = (
             response.css("link[rel='next']::attr(href)").get()
             or response.css("a[rel='next']::attr(href)").get()
@@ -58,5 +66,3 @@ class ProductsSpider(scrapy.Spider):
                     ],
                 },
             )
-
-

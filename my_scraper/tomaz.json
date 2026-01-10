@@ -1,7 +1,38 @@
 [
-{"name": "Tomaz WB906 Series Single Breasted Blazer", "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/IMG_0004-2_2a79e0a3-7f26-4700-8617-43421911bea2.jpg?v=1751268276", "url": "https://tomaz.my/products/tomaz-wb906-series-single-breasted-blazer"},
-{"name": "Tomaz BB063 Series Men Blazer", "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/IMG_0005_2-2_8447563a-b22e-4063-978b-0b60ad0deab1.jpg?v=1753157420", "url": "https://tomaz.my/products/tomaz-bb063-series-men-blazer"},
-{"name": "Tomaz BB029-1 Single Breasted Blazer", "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/TMAZ0417-2.jpg?v=1692867208", "url": "https://tomaz.my/products/tomaz-bb029-1-single-breasted-blazer"},
-{"name": "Tomaz BB028 Series Single Breasted Blazer", "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/TMAZ0424-2copy.jpg?v=1692866843", "url": "https://tomaz.my/products/tomaz-bb028-series-single-breasted-blazer"},
-{"name": "Tomaz BP034-2 Double Button Blazer", "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/TMAZ0397-2.jpg?v=1692866435", "url": "https://tomaz.my/products/tomaz-bp034-2-double-button-blazer-gray"}
+{
+  "name": "Tomaz WB906 Series Single Breasted Blazer",
+  "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/IMG_0004-2_2a79e0a3-7f26-4700-8617-43421911bea2.jpg?v=1751268276",
+  "url": "https://tomaz.my/products/tomaz-wb906-series-single-breasted-blazer",
+  "category": "formal",
+  "scraped_at": "2026-01-08T11:46:46.759465",
+  "scrape_date": "2026-01-08",
+  "scrape_run_id": "20260108_114701"
+},
+{
+  "name": "Tomaz BB063 Series Men Blazer",
+  "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/IMG_0005_2-2_8447563a-b22e-4063-978b-0b60ad0deab1.jpg?v=1753157420",
+  "url": "https://tomaz.my/products/tomaz-bb063-series-men-blazer",
+  "category": "formal",
+  "scraped_at": "2026-01-08T11:46:46.759465",
+  "scrape_date": "2026-01-08",
+  "scrape_run_id": "20260108_114701"
+},
+{
+  "name": "Tomaz BB028 Series Single Breasted Blazer",
+  "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/TMAZ0424-2copy.jpg?v=1692866843",
+  "url": "https://tomaz.my/products/tomaz-bb028-series-single-breasted-blazer",
+  "category": "formal",
+  "scraped_at": "2026-01-08T11:46:46.759465",
+  "scrape_date": "2026-01-08",
+  "scrape_run_id": "20260108_114701"
+},
+{
+  "name": "Tomaz BP034-2 Double Button Blazer",
+  "image": "https://cdn.shopify.com/s/files/1/0242/2753/files/TMAZ0397-2.jpg?v=1692866435",
+  "url": "https://tomaz.my/products/tomaz-bp034-2-double-button-blazer-gray",
+  "category": "formal",
+  "scraped_at": "2026-01-08T11:46:46.759465",
+  "scrape_date": "2026-01-08",
+  "scrape_run_id": "20260108_114701"
+}
 ]

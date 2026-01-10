@@ -2,6 +2,7 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 
@@ -15,6 +16,29 @@ export const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    Credentials({
+      id: "admin-credentials",
+      name: "Admin Login",
+      credentials: {
+        username: { label: "Username", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.username || !credentials?.password) return null;
+        const admin = await prisma.admin.findUnique({
+          where: { username: credentials.username },
+          select: { id: true, username: true, password: true },
+        });
+        if (!admin) return null;
+        if (admin.password !== credentials.password) return null;
+        return {
+          id: admin.id,
+          name: admin.username,
+          email: `${admin.username}@admin.local`,
+          role: "ADMIN",
+        };
+      },
+    }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
 
@@ -24,11 +48,15 @@ export const authOptions = {
       try {
         if (user) {
           let role = "USER";
-          if (user.email) {
+          if (user.role === "ADMIN") {
+            role = "ADMIN";
+          } else if (user.email) {
             const dbUser = await prisma.user.findUnique({ where: { email: user.email }, select: { role: true } });
             role = dbUser?.role || (user.email.endsWith("@admin.com") ? "ADMIN" : "USER");
           }
           token.role = role;
+          token.name = user.name || token.name;
+          token.email = user.email || token.email;
         } else if (!token.role && token.email) {
           const dbUser = await prisma.user.findUnique({ where: { email: token.email }, select: { role: true } });
           token.role = dbUser?.role || "USER";

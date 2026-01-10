@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
     where: { userId: user.id },
     include: {
       product: {
-        select: { id: true, name: true, brand: true, image: true, url: true, price: true },
+        select: { id: true, name: true, brand: true, image: true, url: true },
       },
     },
     orderBy: { createdAt: "desc" },

@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "timestamp": "08/01/2026 11:47:08 UTC+08:00",
+  "timestamp_utc": "2026-01-08T03:47:08.176034Z",
+  "source": "run_all_spiders",
+  "spiders": {
+    "products": "success",
+    "tomaz": "success",
+    "smart_master": "success"
+  },
+  "count": 71
+}

@@ -1,0 +1,650 @@
+2026-01-01 16:19:16 [scrapy.utils.log] INFO: Scrapy 2.13.3 started (bot: my_scraper)
+2026-01-01 16:19:16 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.0.2',
+ 'libxml2': '2.11.9',
+ 'cssselect': '1.3.0',
+ 'parsel': '1.10.0',
+ 'w3lib': '2.3.1',
+ 'Twisted': '25.5.0',
+ 'Python': '3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 '
+           '64 bit (AMD64)]',
+ 'pyOpenSSL': '25.3.0 (OpenSSL 3.5.4 30 Sep 2025)',
+ 'cryptography': '46.0.3',
+ 'Platform': 'Windows-11-10.0.26200-SP0'}
+2026-01-01 16:19:16 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-01-01 16:19:16 [asyncio] DEBUG: Using selector: SelectSelector
+2026-01-01 16:19:16 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.asyncioreactor.AsyncioSelectorReactor
+2026-01-01 16:19:16 [scrapy.utils.log] DEBUG: Using asyncio event loop: asyncio.windows_events._WindowsSelectorEventLoop
+2026-01-01 16:19:16 [scrapy.extensions.telnet] INFO: Telnet Password: 913b71255e48d0d6
+2026-01-01 16:19:16 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2026-01-01 16:19:16 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'my_scraper',
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'DOWNLOAD_DELAY': 1,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'NEWSPIDER_MODULE': 'my_scraper.spiders',
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['my_scraper.spiders']}
+2026-01-01 16:19:16 [asyncio] DEBUG: Using proactor: IocpProactor
+2026-01-01 16:19:16 [scrapy-playwright] INFO: Started loop on separate thread: <ProactorEventLoop running=True closed=False debug=False>
+2026-01-01 16:19:17 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-01-01 16:19:17 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2026-01-01 16:19:17 [scrapy.middleware] INFO: Enabled item pipelines:
+['my_scraper.pipelines.NormalizeAndDedupePipeline']
+2026-01-01 16:19:17 [scrapy.core.engine] INFO: Spider opened
+2026-01-01 16:19:17 [py.warnings] WARNING: C:\Users\User\Documents\Projects\styled\my_scraper\venv\Lib\site-packages\scrapy\core\spidermw.py:433: ScrapyDeprecationWarning: my_scraper.spiders.product_spider.ProductsSpider defines the deprecated start_requests() method. start_requests() has been deprecated in favor of a new method, start(), to support asynchronous code execution. start_requests() will stop being called in a future version of Scrapy. If you use Scrapy 2.13 or higher only, replace start_requests() with start(); note that start() is a coroutine (async def). If you need to maintain compatibility with lower Scrapy versions, when overriding start_requests() in a spider class, override start() as well; you can use super() to reuse the inherited start() implementation without copy-pasting. See the release notes of Scrapy 2.13 for details: https://docs.scrapy.org/en/2.13/news.html
+  warn(
+
+2026-01-01 16:19:17 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-01-01 16:19:17 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2026-01-01 16:19:17 [scrapy-playwright] INFO: Starting download handler
+2026-01-01 16:19:17 [scrapy-playwright] INFO: Starting download handler
+2026-01-01 16:19:19 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://locallab.com.my/robots.txt> (referer: None)
+2026-01-01 16:19:19 [scrapy-playwright] INFO: Launching browser chromium
+2026-01-01 16:19:19 [scrapy-playwright] INFO: Browser chromium launched
+2026-01-01 16:19:19 [scrapy-playwright] DEBUG: Browser context started: 'default' (persistent=False, remote=False)
+2026-01-01 16:19:20 [scrapy-playwright] DEBUG: [Context=default] New page created, page count is 1 (1 for all contexts)
+2026-01-01 16:19:20 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/collections/aegis> (resource type: document)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/collections/aegis>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/storefront/assets/storefront/storefronts.specrules-dd5621a1.json> (resource type: other, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/t/39/assets/theme.css?v=111321760005136382531756187006> (resource type: stylesheet, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/t/39/assets/vendor.min.js?v=118757129943152772801756187006> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/t/39/assets/theme.js?v=120831487839789910711756187006> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/shop-js/modules/v2/client.init-shop-cart-sync_DtuiiIyl.en.esm.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/shop-js/modules/v2/chunk.common_CUHEfi5Q.esm.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css> (resource type: stylesheet, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/Email_Logo_b7c71293-0e6e-4097-bdfe-98d31a517612.png?v=1677659216&width=280> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/LL_H_logo_white_a01ce256-2b05-407e-8bdf-fe0ab62a54f3.png?v=1685353147&width=280> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/Aegis_Wide_fd45b216-0234-40c1-a89b-94758757f781.png?v=1748503406&width=1400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/storefront/assets/storefront/storefronts.specrules-dd5621a1.json>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/t/39/assets/vendor.min.js?v=118757129943152772801756187006>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/shop-js/modules/v2/client.init-shop-cart-sync_DtuiiIyl.en.esm.js>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/t/39/assets/theme.css?v=111321760005136382531756187006>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/t/39/assets/theme.js?v=120831487839789910711756187006>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://monorail-edge.shopifysvc.com/unstable/produce_batch> (resource type: ping, referrer: https://locallab.com.my/)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/DENIMJACKET.png?v=1747644498&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/BLACK.png?v=1747644680&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/checkouts/internal/preloads.js?locale=en-MY> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/storefront/assets/storefront/load_feature-a0a9edcb.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/privacy-banner/storefront-banner.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/perf-kit/shopify-perf-kit-2.1.2.min.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/WHITE.png?v=1747644689&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://cdn.shopify.com/static/images/flags/my.svg?format=jpg&width=60> (resource type: image, referrer: https://locallab.com.my/)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/wpm/bda62cc92w68dfea28pcf9825a4m392e00d0m.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/s/trekkie.storefront.8f32c7f0b513e73f3235c26245676203e1209161.min.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/storefront/assets/shop_events_listener-3da45d37.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/Aegis_Wide_fd45b216-0234-40c1-a89b-94758757f781.png?v=1748503406&width=1400>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/Email_Logo_b7c71293-0e6e-4097-bdfe-98d31a517612.png?v=1677659216&width=280>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/LL_H_logo_white_a01ce256-2b05-407e-8bdf-fe0ab62a54f3.png?v=1685353147&width=280>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/DENIMJACKETBACK.png?v=1747644498&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/AYM07018.webp?v=1747645246&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/AYM07024.webp?v=1747645167&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/GREY.png?v=1747644693&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/AYM07024-2.webp?v=1747645207&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/BEIGE.png?v=1747644697&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/AYM07024_1070455c-6e10-40bd-9b31-47423001fb5d.webp?v=1747645228&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-grr-washed-crop-tee-1154213029.webp?v=1744183822&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-grr-washed-crop-tee-1154213028.webp?v=1744183825&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-brr-washed-crop-tee-1154207744.webp?v=1744183726&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-brr-washed-crop-tee-1154207745.webp?v=1744183732&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-long-sleeve-shirts-flametongue-crop-shirt-47726177026329.jpg?v=1735654272&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-long-sleeve-shirts-flametongue-crop-shirt-47726176993561.jpg?v=1735654282&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegisssss-03.webp?v=1724237277&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegisssss-04.webp?v=1724237345&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegisssss-01_591f8417-2382-4f84-9383-1443dd32c591.webp?v=1724237362&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegisssss-02_c3d1d3d9-4003-4697-a2fd-16be5702a6ab.webp?v=1724237373&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegisssss-07_79b60249-68d4-4382-9b47-3384ff44fd56.webp?v=1724236935&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegiss3sku-03.webp?v=1744183623&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegiss3sku-04-Editcopy-Edit-2copy.webp?v=1744183623&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegiss3sku-01.webp?v=1720810679&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegiss3sku-02.webp?v=1720810681&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-classic-tee-inferno-45637231280409.webp?v=1716020473&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-classic-tee-inferno-45637231345945.webp?v=1716020480&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-classic-tee-black-jade-45637099323673.webp?v=1716020545&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-classic-tee-black-jade-45637099290905.webp?v=1716020552&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-white-45636986700057.jpg?v=1716020214&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-white-45636986732825.jpg?v=1716020221&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-cuban-45636795859225.jpg?v=1716020316&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-cuban-45636795891993.jpg?v=1716020324&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-black-45636698734873.jpg?v=1716020380&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-black-45636698767641.jpg?v=1716020388&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegiss22-04copy.webp?v=1703439847&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/aegiss22-06.webp?v=1703439851&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/windbreakeroilve1.webp?v=1735804715&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/parkagfront_ff6b7747-0258-4af1-a8a9-3ce0b74db30d.webp?v=1735804715&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/parapantpea.webp?v=1735804712&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shop/files/parkagfront.webp?v=1735804712&width=400> (resource type: image, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/shop-js/modules/v2/chunk.common_CUHEfi5Q.esm.js>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cart.js> (resource type: fetch, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/search?type=product&q=&section_id=template--20149781758211__recently-viewed-products> (resource type: fetch, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/BLACK.png?v=1747644680&width=400>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/DENIMJACKET.png?v=1747644498&width=400>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/WHITE.png?v=1747644689&width=400>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/checkouts/internal/preloads.js?locale=en-MY>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://monorail-edge.shopifysvc.com/unstable/produce_batch>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://cdn.shopify.com/shop-assets/static_uploads/shoplift/GTStandard-MRegular.woff2> (resource type: font, referrer: https://locallab.com.my/)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/storefront/assets/storefront/load_feature-a0a9edcb.js>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/consent-tracking-api/v0.1/consent-tracking-api.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/privacy-banner/storefront-banner.js>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://monorail-edge.shopifysvc.com/v1/produce> (resource type: fetch, referrer: https://locallab.com.my/)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://cdn.shopify.com/static/images/flags/my.svg?format=jpg&width=60>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/perf-kit/shopify-perf-kit-2.1.2.min.js>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/wpm/bda62cc92w68dfea28pcf9825a4m392e00d0m.js>
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://locallab.com.my/api/collect> (resource type: fetch, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/app/web-pixel-497385731@b2a88bafab3e21179ed38636efcd8a93/pixel.modern.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/app/web-pixel-170721539@ca16bc87fe92b6042fbaa3acc2fbdaa6/pixel.modern.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/web-pixel-shopify-app-pixel@0450/sandbox/worker.modern.js> (resource type: script, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/custom/web-pixel-78086403@1/sandbox/modern/collections/aegis> (resource type: document, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:21 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/custom/web-pixel-shopify-custom-pixel@0450/sandbox/modern/collections/aegis> (resource type: document, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://shop.app/pay/hop?analytics_trace_id=2b54e7e1-a5be-4f91-ba55-d9a39d3dbf8f&target_origin=https%3A%2F%2Flocallab.com.my&client_handle=local-lab-my.myshopify.com> (resource type: document, referrer: https://locallab.com.my/)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/s/trekkie.storefront.8f32c7f0b513e73f3235c26245676203e1209161.min.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/DENIMJACKETBACK.png?v=1747644498&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/AYM07018.webp?v=1747645246&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/AYM07024.webp?v=1747645167&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/GREY.png?v=1747644693&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/AYM07024-2.webp?v=1747645207&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/storefront/assets/shop_events_listener-3da45d37.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/BEIGE.png?v=1747644697&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/AYM07024_1070455c-6e10-40bd-9b31-47423001fb5d.webp?v=1747645228&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-grr-washed-crop-tee-1154213028.webp?v=1744183825&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-grr-washed-crop-tee-1154213029.webp?v=1744183822&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-brr-washed-crop-tee-1154207744.webp?v=1744183726&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-brr-washed-crop-tee-1154207745.webp?v=1744183732&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-long-sleeve-shirts-flametongue-crop-shirt-47726177026329.jpg?v=1735654272&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-long-sleeve-shirts-flametongue-crop-shirt-47726176993561.jpg?v=1735654282&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegisssss-03.webp?v=1724237277&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch> (resource type: ping, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch> (resource type: ping, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch> (resource type: ping, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch> (resource type: ping, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch> (resource type: ping, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegisssss-04.webp?v=1724237345&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegisssss-01_591f8417-2382-4f84-9383-1443dd32c591.webp?v=1724237362&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegisssss-02_c3d1d3d9-4003-4697-a2fd-16be5702a6ab.webp?v=1724237373&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegisssss-07_79b60249-68d4-4382-9b47-3384ff44fd56.webp?v=1724236935&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegiss3sku-03.webp?v=1744183623&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegiss3sku-04-Editcopy-Edit-2copy.webp?v=1744183623&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegiss3sku-01.webp?v=1720810679&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegiss3sku-02.webp?v=1720810681&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-classic-tee-inferno-45637231280409.webp?v=1716020473&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-classic-tee-inferno-45637231345945.webp?v=1716020480&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-classic-tee-black-jade-45637099323673.webp?v=1716020545&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-white-45636986732825.jpg?v=1716020221&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-white-45636986700057.jpg?v=1716020214&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-cuban-45636795859225.jpg?v=1716020316&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-classic-tee-black-jade-45637099290905.webp?v=1716020552&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-cuban-45636795891993.jpg?v=1716020324&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-black-45636698734873.jpg?v=1716020380&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-black-45636698767641.jpg?v=1716020388&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegiss22-04copy.webp?v=1703439847&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/aegiss22-06.webp?v=1703439851&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/windbreakeroilve1.webp?v=1735804715&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/parkagfront_ff6b7747-0258-4af1-a8a9-3ce0b74db30d.webp?v=1735804715&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/parapantpea.webp?v=1735804712&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shop/files/parkagfront.webp?v=1735804712&width=400>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://monorail-edge.shopifysvc.com/v1/produce>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/shopifycloud/consent-tracking-api/v0.1/consent-tracking-api.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cart.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/api/collect>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/search?type=product&q=&section_id=template--20149781758211__recently-viewed-products>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/custom/web-pixel-78086403@1/sandbox/modern/collections/aegis>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/web-pixel-shopify-app-pixel@0450/sandbox/worker.modern.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/custom/web-pixel-shopify-custom-pixel@0450/sandbox/modern/collections/aegis>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/wpm/sda62cc92w68dfea28pcf9825a4m392e00d0m.js> (resource type: script)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/wpm/sda62cc92w68dfea28pcf9825a4m392e00d0m.js> (resource type: script)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/app/web-pixel-170721539@ca16bc87fe92b6042fbaa3acc2fbdaa6/pixel.modern.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/app/web-pixel-497385731@b2a88bafab3e21179ed38636efcd8a93/pixel.modern.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://connect.facebook.net/en_US/fbevents.js> (resource type: script, referrer: https://locallab.com.my/)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/wpm/sda62cc92w68dfea28pcf9825a4m392e00d0m.js> (resource type: other, referrer: https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/web-pixel-shopify-app-pixel@0450/sandbox/worker.modern.js)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://www.googletagmanager.com/gtag/js?id=G-QWJQWSW3R5> (resource type: script, referrer: https://locallab.com.my/)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch> (resource type: ping, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://cdn.shopify.com/shop-assets/static_uploads/shoplift/GTStandard-MRegular.woff2>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/wpm/sda62cc92w68dfea28pcf9825a4m392e00d0m.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/wpm/sda62cc92w68dfea28pcf9825a4m392e00d0m.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/cdn/wpm/sda62cc92w68dfea28pcf9825a4m392e00d0m.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/web-pixels/strict/app/web-pixel-shopify-app-pixel@0450.js> (resource type: other, referrer: https://locallab.com.my/web-pixels@da62cc92w68dfea28pcf9825a4m392e00d0/web-pixel-shopify-app-pixel@0450/sandbox/worker.modern.js)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://www.googletagmanager.com/gtag/js?id=G-1JGMBNRYV9> (resource type: script)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://connect.facebook.net/en_US/fbevents.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/web-pixels/strict/app/web-pixel-shopify-app-pixel@0450.js>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://connect.facebook.net/signals/config/519358985237931?v=2.9.248&r=stable&domain=locallab.com.my&hme=17590b9a2e1b26755cdc9ecb401f9f46bca979d3ccce95d786db0936167af731&ex_m=94%2C156%2C134%2C20%2C67%2C68%2C127%2C63%2C43%2C128%2C72%2C62%2C10%2C141%2C80%2C15%2C93%2C28%2C122%2C115%2C70%2C73%2C121%2C138%2C102%2C143%2C7%2C3%2C4%2C6%2C5%2C2%2C81%2C91%2C144%2C224%2C167%2C57%2C226%2C227%2C50%2C183%2C27%2C69%2C232%2C231%2C170%2C30%2C56%2C9%2C59%2C87%2C88%2C89%2C95%2C118%2C29%2C26%2C120%2C117%2C116%2C135%2C71%2C137%2C136%2C45%2C55%2C111%2C14%2C140%2C40%2C213%2C215%2C177%2C23%2C24%2C25%2C17%2C18%2C39%2C35%2C37%2C36%2C76%2C82%2C86%2C100%2C126%2C129%2C41%2C101%2C21%2C19%2C107%2C64%2C33%2C131%2C130%2C132%2C123%2C22%2C32%2C54%2C99%2C139%2C65%2C16%2C133%2C104%2C31%2C193%2C163%2C284%2C211%2C154%2C196%2C189%2C164%2C97%2C119%2C75%2C109%2C49%2C44%2C103%2C42%2C108%2C114%2C53%2C60%2C113%2C48%2C51%2C47%2C90%2C142%2C0%2C112%2C13%2C110%2C11%2C1%2C52%2C83%2C58%2C61%2C106%2C79%2C78%2C145%2C146%2C84%2C85%2C8%2C92%2C46%2C124%2C77%2C74%2C66%2C105%2C96%2C38%2C125%2C34%2C98%2C12%2C147> (resource type: script, referrer: https://locallab.com.my/)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://www.googletagmanager.com/gtag/js?id=G-QWJQWSW3R5>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://www.google-analytics.com/g/collect?v=2&tid=G-QWJQWSW3R5&gtm=45je5ca1v9122679342za200zd9122679342&_p=1767255562396&gcs=G111&gcd=13t3t3t3t5l1&npa=0&dma=0&gdid=dN2ZkMj.dNTU0Yz.dYmNjMT&cid=1008584207.1767255563&ul=en-us&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B140.0.7339.16%7CNot%253DA%253FBrand%3B24.0.0.0%7CHeadlessChrome%3B140.0.7339.16&uamb=0&uam=&uap=Windows&uapv=19.0.0&uaw=0&are=1&frm=0&pscdl=noapi&_s=1&tag_exp=103116026~103200004~104527907~104528500~104684208~104684211~105391252~115583767~115938466~115938469~116184927~116184929~116251938~116251940~116744867&dp=%2Fcollections%2Faegis&dt=Aegis&dl=https%3A%2F%2Flocallab.com.my%2Fcollections%2Faegis&sid=1767255562&sct=1&seg=0&_tu=AAI&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&edid=dNzYwYj&tfd=2057> (resource type: fetch, referrer: https://locallab.com.my/)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://www.googletagmanager.com/gtag/js?id=G-1JGMBNRYV9>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://connect.facebook.net/signals/config/519358985237931?v=2.9.248&r=stable&domain=locallab.com.my&hme=17590b9a2e1b26755cdc9ecb401f9f46bca979d3ccce95d786db0936167af731&ex_m=94%2C156%2C134%2C20%2C67%2C68%2C127%2C63%2C43%2C128%2C72%2C62%2C10%2C141%2C80%2C15%2C93%2C28%2C122%2C115%2C70%2C73%2C121%2C138%2C102%2C143%2C7%2C3%2C4%2C6%2C5%2C2%2C81%2C91%2C144%2C224%2C167%2C57%2C226%2C227%2C50%2C183%2C27%2C69%2C232%2C231%2C170%2C30%2C56%2C9%2C59%2C87%2C88%2C89%2C95%2C118%2C29%2C26%2C120%2C117%2C116%2C135%2C71%2C137%2C136%2C45%2C55%2C111%2C14%2C140%2C40%2C213%2C215%2C177%2C23%2C24%2C25%2C17%2C18%2C39%2C35%2C37%2C36%2C76%2C82%2C86%2C100%2C126%2C129%2C41%2C101%2C21%2C19%2C107%2C64%2C33%2C131%2C130%2C132%2C123%2C22%2C32%2C54%2C99%2C139%2C65%2C16%2C133%2C104%2C31%2C193%2C163%2C284%2C211%2C154%2C196%2C189%2C164%2C97%2C119%2C75%2C109%2C49%2C44%2C103%2C42%2C108%2C114%2C53%2C60%2C113%2C48%2C51%2C47%2C90%2C142%2C0%2C112%2C13%2C110%2C11%2C1%2C52%2C83%2C58%2C61%2C106%2C79%2C78%2C145%2C146%2C84%2C85%2C8%2C92%2C46%2C124%2C77%2C74%2C66%2C105%2C96%2C38%2C125%2C34%2C98%2C12%2C147>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <403 https://shop.app/pay/hop?analytics_trace_id=2b54e7e1-a5be-4f91-ba55-d9a39d3dbf8f&target_origin=https%3A%2F%2Flocallab.com.my&client_handle=local-lab-my.myshopify.com>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <POST https://www.google-analytics.com/g/collect?v=2&tid=G-1JGMBNRYV9&gtm=45je5ca1h1v9126352057za200zd9126352057&_p=1767255562598&gcs=G111&gcd=13n3n3n3n5l1&npa=0&dma=0&gdid=dMDg0Yz.dMmQyMD&cid=385779802.1767255563&ul=en-us&sr=1280x720&ir=1&uaa=x86&uab=64&uafvl=Chromium%3B140.0.7339.16%7CNot%253DA%253FBrand%3B24.0.0.0%7CHeadlessChrome%3B140.0.7339.16&uamb=0&uam=&uap=Windows&uapv=19.0.0&uaw=0&are=1&frm=1&pscdl=noapi&_eu=EA&_s=1&tag_exp=103116026~103200004~104527906~104528501~104684208~104684211~105391253~115583767~115616986~115938465~115938468~115985660~116184927~116184929~116251938~116251940&sid=1767255562&sct=1&seg=0&dl=https%3A%2F%2Flocallab.com.my%2Fcollections%2Faegis&dt=Aegis&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=916> (resource type: fetch)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <204 https://www.google-analytics.com/g/collect?v=2&tid=G-QWJQWSW3R5&gtm=45je5ca1v9122679342za200zd9122679342&_p=1767255562396&gcs=G111&gcd=13t3t3t3t5l1&npa=0&dma=0&gdid=dN2ZkMj.dNTU0Yz.dYmNjMT&cid=1008584207.1767255563&ul=en-us&sr=1280x720&uaa=x86&uab=64&uafvl=Chromium%3B140.0.7339.16%7CNot%253DA%253FBrand%3B24.0.0.0%7CHeadlessChrome%3B140.0.7339.16&uamb=0&uam=&uap=Windows&uapv=19.0.0&uaw=0&are=1&frm=0&pscdl=noapi&_s=1&tag_exp=103116026~103200004~104527907~104528500~104684208~104684211~105391252~115583767~115938466~115938469~116184927~116184929~116251938~116251940~116744867&dp=%2Fcollections%2Faegis&dt=Aegis&dl=https%3A%2F%2Flocallab.com.my%2Fcollections%2Faegis&sid=1767255562&sct=1&seg=0&_tu=AAI&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&edid=dNzYwYj&tfd=2057>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <200 https://locallab.com.my/.well-known/shopify/monorail/unstable/produce_batch>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://app.sweethelp.io/js/sweet-help.js?var=2.0&shop=local-lab-my.myshopify.com> (resource type: script, referrer: https://locallab.com.my/)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://gateway.apaylater.com/plugins/price_divider/main.js?platform=SHOPIFY&country=MY&price_divider_applied_on=all&shop=local-lab-my.myshopify.com> (resource type: script, referrer: https://locallab.com.my/)
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Response: <204 https://www.google-analytics.com/g/collect?v=2&tid=G-1JGMBNRYV9&gtm=45je5ca1h1v9126352057za200zd9126352057&_p=1767255562598&gcs=G111&gcd=13n3n3n3n5l1&npa=0&dma=0&gdid=dMDg0Yz.dMmQyMD&cid=385779802.1767255563&ul=en-us&sr=1280x720&ir=1&uaa=x86&uab=64&uafvl=Chromium%3B140.0.7339.16%7CNot%253DA%253FBrand%3B24.0.0.0%7CHeadlessChrome%3B140.0.7339.16&uamb=0&uam=&uap=Windows&uapv=19.0.0&uaw=0&are=1&frm=1&pscdl=noapi&_eu=EA&_s=1&tag_exp=103116026~103200004~104527906~104528501~104684208~104684211~105391253~115583767~115616986~115938465~115938468~115985660~116184927~116184929~116251938~116251940&sid=1767255562&sct=1&seg=0&dl=https%3A%2F%2Flocallab.com.my%2Fcollections%2Faegis&dt=Aegis&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=916>
+2026-01-01 16:19:22 [scrapy-playwright] DEBUG: [Context=default] Request: <GET https://locallab.com.my/cdn/shopifycloud/checkout-web/assets/c1/polyfills-legacy.DsOoIYnp.js> (resource type: other, referrer: https://locallab.com.my/collections/aegis)
+2026-01-01 16:19:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://locallab.com.my/collections/aegis> (referer: None) ['playwright']
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Crop Blue Denim Jacket', 'image': 'https://locallab.com.my/cdn/shop/files/DENIMJACKET.png?v=1747644498&width=2250', 'url': 'https://locallab.com.my/products/crop-blue-denim-jacket'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Céleste Black Crop Tee', 'image': 'https://locallab.com.my/cdn/shop/files/BLACK.png?v=1747644680&width=2250', 'url': 'https://locallab.com.my/products/celeste-black-crop-tee'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Céleste White Crop Tee', 'image': 'https://locallab.com.my/cdn/shop/files/WHITE.png?v=1747644689&width=2250', 'url': 'https://locallab.com.my/products/celeste-white-crop-tee'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Céleste Light Grey Crop Tee', 'image': 'https://locallab.com.my/cdn/shop/files/GREY.png?v=1747644693&width=2250', 'url': 'https://locallab.com.my/products/celeste-light-grey-crop-tee'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Céleste Beige Crop Tee', 'image': 'https://locallab.com.my/cdn/shop/files/BEIGE.png?v=1747644697&width=2250', 'url': 'https://locallab.com.my/products/celeste-beige-crop-tee'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Grr Washed Crop Tee', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-grr-washed-crop-tee-1154213029.webp?v=1744183822&width=1000', 'url': 'https://locallab.com.my/products/grr-washed-crop-tee'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Brr Washed Crop Tee', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-brr-washed-crop-tee-1154207744.webp?v=1744183726&width=1000', 'url': 'https://locallab.com.my/products/brr-washed-crop-tee'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Flametongue Crop Shirt Blue', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-long-sleeve-shirts-flametongue-crop-shirt-47726177026329.jpg?v=1735654272&width=1100', 'url': 'https://locallab.com.my/products/flametongue-crop-shirt'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Boxy Tee Navy', 'image': 'https://locallab.com.my/cdn/shop/files/aegisssss-03.webp?v=1724237277&width=1100', 'url': 'https://locallab.com.my/products/boxy-tee-navy'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Boxy Tee Grey', 'image': 'https://locallab.com.my/cdn/shop/files/aegisssss-01_591f8417-2382-4f84-9383-1443dd32c591.webp?v=1724237362&width=1100', 'url': 'https://locallab.com.my/products/boxy-tee-grey'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Pleated Shorts Khaki', 'image': 'https://locallab.com.my/cdn/shop/files/aegisssss-07_79b60249-68d4-4382-9b47-3384ff44fd56.webp?v=1724236935&width=1100', 'url': 'https://locallab.com.my/products/pleated-shorts-khaki'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Crop Tee White', 'image': 'https://locallab.com.my/cdn/shop/files/aegiss3sku-03.webp?v=1744183623&width=1100', 'url': 'https://locallab.com.my/products/crop-tee-white'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Crop Tee Black', 'image': 'https://locallab.com.my/cdn/shop/files/aegiss3sku-01.webp?v=1720810679&width=1100', 'url': 'https://locallab.com.my/products/crop-tee-black'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Classic Tee Red', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-classic-tee-inferno-45637231280409.webp?v=1716020473&width=1100', 'url': 'https://locallab.com.my/products/aegis-classic-tee-red'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Classic Tee Green', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-classic-tee-black-jade-45637099323673.webp?v=1716020545&width=1100', 'url': 'https://locallab.com.my/products/aegis-classic-tee-green'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Boxy Tee Oat', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-white-45636986700057.jpg?v=1716020214&width=1100', 'url': 'https://locallab.com.my/products/aegis-boxy-tee-oat'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Boxy Tee Cuban', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-cuban-45636795859225.jpg?v=1716020316&width=1100', 'url': 'https://locallab.com.my/products/aegis-boxy-tee-cuban'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Boxy Tee Black', 'image': 'https://locallab.com.my/cdn/shop/files/aegis-boxy-tee-black-45636698734873.jpg?v=1716020380&width=1100', 'url': 'https://locallab.com.my/products/aegis-boxy-tee-black'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Everywhere Stove', 'image': 'https://locallab.com.my/cdn/shop/files/aegiss22-04copy.webp?v=1703439847&width=1100', 'url': 'https://locallab.com.my/products/aegis-everywhere-stove'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Jacquemard Anorak Frog', 'image': 'https://locallab.com.my/cdn/shop/files/windbreakeroilve1.webp?v=1735804715&width=1100', 'url': 'https://locallab.com.my/products/aegis-uv-windbreaker-olive'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Parachute Pants Olive', 'image': 'https://locallab.com.my/cdn/shop/files/parapantpea.webp?v=1735804712&width=1080', 'url': 'https://locallab.com.my/products/aegis-parachute-pants-olive'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Camping Table Black', 'image': 'https://locallab.com.my/cdn/shop/files/aegiss22-01.webp?v=1703439569&width=1100', 'url': 'https://locallab.com.my/products/aegis-camping-table-black'}
+2026-01-01 16:19:23 [scrapy.core.scraper] DEBUG: Scraped from <200 https://locallab.com.my/collections/aegis>
+{'name': 'Foldable Camp Chair Black', 'image': 'https://locallab.com.my/cdn/shop/files/campingchair-01copy.webp?v=1700212605&width=550', 'url': 'https://locallab.com.my/products/aegis-camping-chair-black'}
+2026-01-01 16:19:23 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-01-01 16:19:23 [scrapy.extensions.feedexport] INFO: Stored json feed (23 items) in: products.json
+2026-01-01 16:19:23 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 1051,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 357647,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 2,
+ 'elapsed_time_seconds': 6.21336,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 1, 1, 8, 19, 23, 283225, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 7120,
+ 'httpcompression/response_count': 1,
+ 'item_scraped_count': 23,
+ 'items_per_minute': 230.0,
+ 'log_count/DEBUG': 212,
+ 'log_count/INFO': 16,
+ 'log_count/WARNING': 1,
+ 'playwright/browser_count': 1,
+ 'playwright/context_count': 1,
+ 'playwright/context_count/max_concurrent': 1,
+ 'playwright/context_count/persistent/False': 1,
+ 'playwright/context_count/remote/False': 1,
+ 'playwright/page_count': 1,
+ 'playwright/page_count/closed': 1,
+ 'playwright/page_count/max_concurrent': 1,
+ 'playwright/request_count': 92,
+ 'playwright/request_count/method/GET': 81,
+ 'playwright/request_count/method/POST': 11,
+ 'playwright/request_count/navigation': 4,
+ 'playwright/request_count/resource_type/document': 4,
+ 'playwright/request_count/resource_type/fetch': 6,
+ 'playwright/request_count/resource_type/font': 1,
+ 'playwright/request_count/resource_type/image': 45,
+ 'playwright/request_count/resource_type/other': 4,
+ 'playwright/request_count/resource_type/ping': 7,
+ 'playwright/request_count/resource_type/script': 23,
+ 'playwright/request_count/resource_type/stylesheet': 2,
+ 'playwright/response_count': 89,
+ 'playwright/response_count/method/GET': 78,
+ 'playwright/response_count/method/POST': 11,
+ 'playwright/response_count/resource_type/document': 4,
+ 'playwright/response_count/resource_type/fetch': 6,
+ 'playwright/response_count/resource_type/font': 1,
+ 'playwright/response_count/resource_type/image': 45,
+ 'playwright/response_count/resource_type/other': 3,
+ 'playwright/response_count/resource_type/ping': 7,
+ 'playwright/response_count/resource_type/script': 21,
+ 'playwright/response_count/resource_type/stylesheet': 2,
+ 'response_received_count': 2,
+ 'responses_per_minute': 20.0,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2026, 1, 1, 8, 19, 17, 69865, tzinfo=datetime.timezone.utc)}
+2026-01-01 16:19:23 [scrapy.core.engine] INFO: Spider closed (finished)
+2026-01-01 16:19:23 [scrapy-playwright] INFO: Closing download handler
+2026-01-01 16:19:23 [scrapy-playwright] INFO: Closing download handler
+2026-01-01 16:19:23 [scrapy-playwright] DEBUG: Browser context closed: 'default' (persistent=False, remote=False)
+2026-01-01 16:19:23 [scrapy-playwright] INFO: Closing browser
+2026-01-01 16:19:23 [scrapy-playwright] DEBUG: Browser disconnected
+2026-01-01 16:19:24 [scrapy.utils.log] INFO: Scrapy 2.13.3 started (bot: my_scraper)
+2026-01-01 16:19:25 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.0.2',
+ 'libxml2': '2.11.9',
+ 'cssselect': '1.3.0',
+ 'parsel': '1.10.0',
+ 'w3lib': '2.3.1',
+ 'Twisted': '25.5.0',
+ 'Python': '3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 '
+           '64 bit (AMD64)]',
+ 'pyOpenSSL': '25.3.0 (OpenSSL 3.5.4 30 Sep 2025)',
+ 'cryptography': '46.0.3',
+ 'Platform': 'Windows-11-10.0.26200-SP0'}
+2026-01-01 16:19:25 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-01-01 16:19:25 [asyncio] DEBUG: Using selector: SelectSelector
+2026-01-01 16:19:25 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.asyncioreactor.AsyncioSelectorReactor
+2026-01-01 16:19:25 [scrapy.utils.log] DEBUG: Using asyncio event loop: asyncio.windows_events._WindowsSelectorEventLoop
+2026-01-01 16:19:25 [scrapy.extensions.telnet] INFO: Telnet Password: 2db54ea949a1494b
+2026-01-01 16:19:25 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2026-01-01 16:19:25 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'my_scraper',
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'DOWNLOAD_DELAY': 1,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'NEWSPIDER_MODULE': 'my_scraper.spiders',
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['my_scraper.spiders']}
+2026-01-01 16:19:25 [asyncio] DEBUG: Using proactor: IocpProactor
+2026-01-01 16:19:25 [scrapy-playwright] INFO: Started loop on separate thread: <ProactorEventLoop running=True closed=False debug=False>
+2026-01-01 16:19:25 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-01-01 16:19:25 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2026-01-01 16:19:25 [scrapy.middleware] INFO: Enabled item pipelines:
+['my_scraper.pipelines.NormalizeAndDedupePipeline']
+2026-01-01 16:19:25 [scrapy.core.engine] INFO: Spider opened
+2026-01-01 16:19:25 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-01-01 16:19:25 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2026-01-01 16:19:25 [scrapy-playwright] INFO: Starting download handler
+2026-01-01 16:19:25 [scrapy-playwright] INFO: Starting download handler
+2026-01-01 16:19:26 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://tomaz.my/robots.txt> (referer: None)
+2026-01-01 16:19:26 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://tomaz.my/collections/blazers/products.json?limit=250&page=1> (referer: None)
+2026-01-01 16:19:27 [scrapy.core.scraper] DEBUG: Scraped from <200 https://tomaz.my/collections/blazers/products.json?limit=250&page=1>
+{'name': 'Tomaz WB906 Series Single Breasted Blazer', 'image': 'https://cdn.shopify.com/s/files/1/0242/2753/files/IMG_0004-2_2a79e0a3-7f26-4700-8617-43421911bea2.jpg?v=1751268276', 'url': 'https://tomaz.my/products/tomaz-wb906-series-single-breasted-blazer'}
+2026-01-01 16:19:27 [scrapy.core.scraper] DEBUG: Scraped from <200 https://tomaz.my/collections/blazers/products.json?limit=250&page=1>
+{'name': 'Tomaz BB063 Series Men Blazer', 'image': 'https://cdn.shopify.com/s/files/1/0242/2753/files/IMG_0005_2-2_8447563a-b22e-4063-978b-0b60ad0deab1.jpg?v=1753157420', 'url': 'https://tomaz.my/products/tomaz-bb063-series-men-blazer'}
+2026-01-01 16:19:27 [scrapy.core.scraper] DEBUG: Scraped from <200 https://tomaz.my/collections/blazers/products.json?limit=250&page=1>
+{'name': 'Tomaz BB028 Series Single Breasted Blazer', 'image': 'https://cdn.shopify.com/s/files/1/0242/2753/files/TMAZ0424-2copy.jpg?v=1692866843', 'url': 'https://tomaz.my/products/tomaz-bb028-series-single-breasted-blazer'}
+2026-01-01 16:19:27 [scrapy.core.scraper] DEBUG: Scraped from <200 https://tomaz.my/collections/blazers/products.json?limit=250&page=1>
+{'name': 'Tomaz BP034-2 Double Button Blazer', 'image': 'https://cdn.shopify.com/s/files/1/0242/2753/files/TMAZ0397-2.jpg?v=1692866435', 'url': 'https://tomaz.my/products/tomaz-bp034-2-double-button-blazer-gray'}
+2026-01-01 16:19:27 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-01-01 16:19:27 [scrapy.extensions.feedexport] INFO: Stored json feed (4 items) in: tomaz.json
+2026-01-01 16:19:27 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 1059,
+ 'downloader/request_count': 2,
+ 'downloader/request_method_count/GET': 2,
+ 'downloader/response_bytes': 10699,
+ 'downloader/response_count': 2,
+ 'downloader/response_status_count/200': 2,
+ 'elapsed_time_seconds': 1.673334,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 1, 1, 8, 19, 27, 33251, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 71851,
+ 'httpcompression/response_count': 2,
+ 'item_scraped_count': 4,
+ 'items_per_minute': 240.0,
+ 'log_count/DEBUG': 10,
+ 'log_count/INFO': 14,
+ 'response_received_count': 2,
+ 'responses_per_minute': 120.0,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2026, 1, 1, 8, 19, 25, 359917, tzinfo=datetime.timezone.utc)}
+2026-01-01 16:19:27 [scrapy.core.engine] INFO: Spider closed (finished)
+2026-01-01 16:19:27 [scrapy-playwright] INFO: Closing download handler
+2026-01-01 16:19:27 [scrapy-playwright] INFO: Closing download handler
+2026-01-01 16:19:28 [scrapy.utils.log] INFO: Scrapy 2.13.3 started (bot: my_scraper)
+2026-01-01 16:19:28 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.0.2',
+ 'libxml2': '2.11.9',
+ 'cssselect': '1.3.0',
+ 'parsel': '1.10.0',
+ 'w3lib': '2.3.1',
+ 'Twisted': '25.5.0',
+ 'Python': '3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 '
+           '64 bit (AMD64)]',
+ 'pyOpenSSL': '25.3.0 (OpenSSL 3.5.4 30 Sep 2025)',
+ 'cryptography': '46.0.3',
+ 'Platform': 'Windows-11-10.0.26200-SP0'}
+2026-01-01 16:19:28 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-01-01 16:19:28 [asyncio] DEBUG: Using selector: SelectSelector
+2026-01-01 16:19:28 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.asyncioreactor.AsyncioSelectorReactor
+2026-01-01 16:19:28 [scrapy.utils.log] DEBUG: Using asyncio event loop: asyncio.windows_events._WindowsSelectorEventLoop
+2026-01-01 16:19:28 [scrapy.extensions.telnet] INFO: Telnet Password: e507cfec32aaa3f2
+2026-01-01 16:19:28 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2026-01-01 16:19:28 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'my_scraper',
+ 'CONCURRENT_REQUESTS_PER_DOMAIN': 1,
+ 'DOWNLOAD_DELAY': 1,
+ 'DOWNLOAD_TIMEOUT': 30,
+ 'FEED_EXPORT_ENCODING': 'utf-8',
+ 'NEWSPIDER_MODULE': 'my_scraper.spiders',
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['my_scraper.spiders']}
+2026-01-01 16:19:28 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-01-01 16:19:28 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2026-01-01 16:19:28 [scrapy.middleware] INFO: Enabled item pipelines:
+['my_scraper.pipelines.NormalizeAndDedupePipeline']
+2026-01-01 16:19:28 [scrapy.core.engine] INFO: Spider opened
+2026-01-01 16:19:28 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-01-01 16:19:28 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2026-01-01 16:19:29 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://smartmaster.com.my/robots.txt> (referer: None)
+2026-01-01 16:19:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1> (referer: None)
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Gabung Batik Long Sleeve Shirt LS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt1.jpg?v=1734832793', 'url': 'https://smartmaster.com.my/products/gabung-batik-long-sleeve-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Tulungagung Scarlet Regular Fit Shirt LS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt6.jpg?v=1737552896', 'url': 'https://smartmaster.com.my/products/tulungagung-scarlet-regular-fit-shirt-ls'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Vanshurt Polo Slim Fit Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt8.jpg?v=1737601629', 'url': 'https://smartmaster.com.my/products/vanshurt-polo-slim-fit-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Vanshurt Slim Fit Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt4_5c8bd94d-6b60-431d-b964-29156860dd99.jpg?v=1737601085', 'url': 'https://smartmaster.com.my/products/vanshurt-slim-fit-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Tulungagung Regular Fit Shirt SS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt2ss.jpg?v=1737552683', 'url': 'https://smartmaster.com.my/products/tulungagung-regular-fit-shirt-ss'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Sekar Jagad Regular Fit Shirt SS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt4ss.jpg?v=1737551997', 'url': 'https://smartmaster.com.my/products/sekar-jagad-regular-fit-shirt-ss'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Oceanic Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt6_front_1.jpg?v=1737781152', 'url': 'https://smartmaster.com.my/products/oceanic-casual-shirt-1'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Carmine Tang Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/tang2front1.jpg?v=1737779957', 'url': 'https://smartmaster.com.my/products/carmine-tang-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Textured Comfort Fit Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt5c1.jpg?v=1737602100', 'url': 'https://smartmaster.com.my/products/textured-comfort-fit-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Tulungagung Scarlet Regular Fit Shirt SS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt6ss.jpg?v=1737553077', 'url': 'https://smartmaster.com.my/products/tulungagung-scarlet-regular-fit-shirt-ss'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Tulungagung Regular Fit Shirt LS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt2.jpg?v=1737552312', 'url': 'https://smartmaster.com.my/products/tulungagung-regular-fit-shirt-ls'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Sekar Jagad Regular Fit Shirt LS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt4.jpg?v=1737552513', 'url': 'https://smartmaster.com.my/products/sekar-jagad-regular-fit-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Vanes Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt7front1.jpg?v=1737825147', 'url': 'https://smartmaster.com.my/products/vanes-casual-shirt-1'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Vanes Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt4front2.jpg?v=1737825016', 'url': 'https://smartmaster.com.my/products/vanes-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Pointer Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt8front1.jpg?v=1737824820', 'url': 'https://smartmaster.com.my/products/pointer-casual-shirt-1'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Pointer Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt3front2.jpg?v=1737824663', 'url': 'https://smartmaster.com.my/products/pointer-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Seigaiha Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt5front1.jpg?v=1737824447', 'url': 'https://smartmaster.com.my/products/seigaiha-casual-shirt-1'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Seigaiha Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt2front1.jpg?v=1737824030', 'url': 'https://smartmaster.com.my/products/seigaiha-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Oceanic Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt1front1.jpg?v=1737791240', 'url': 'https://smartmaster.com.my/products/oceanic-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Dekki Tang Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/tang3front1.jpg?v=1737780356', 'url': 'https://smartmaster.com.my/products/dekki-tang-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Textured Tang Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/tang1front1.jpg?v=1737779612', 'url': 'https://smartmaster.com.my/products/textured-tang-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Tessellat Comfort Fit Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt7official.jpg?v=1737603052', 'url': 'https://smartmaster.com.my/products/tessellat-comfort-fit-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Zencial Comfort Fit Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt6_9a7044ab-e39e-4de6-a480-132c633ddf3b.jpg?v=1737602524', 'url': 'https://smartmaster.com.my/products/zencial-comfort-fit-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Argon Polo Slim FIt Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt2_e95b70e4-775f-4b87-b1f6-f11c59a99fcc.jpg?v=1737600003', 'url': 'https://smartmaster.com.my/products/argon-polo-slim-fit-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Sheph Regular Fit Casual Shirt', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt1_3fb037d7-f9e2-4c95-9040-92d17ffb1afb.jpg?v=1737599370', 'url': 'https://smartmaster.com.my/products/sheph-regular-fit-casual-shirt'}
+2026-01-01 16:19:30 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/casual-shirt/products.json?limit=250&page=1>
+{'name': 'Gabung Batik Regular Fit Shirt SS', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/shirt1ss.jpg?v=1737548344', 'url': 'https://smartmaster.com.my/products/gabung-batik-regular-fit-shirt'}
+2026-01-01 16:19:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1> (referer: None)
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Slim Fit Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/pants3.jpg?v=1737696090', 'url': 'https://smartmaster.com.my/products/slim-fit-trousers'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Skinny Fit Trouser', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/pants1front.jpg?v=1737695112', 'url': 'https://smartmaster.com.my/products/skinny-fit-trouser'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Skinny Fit Black Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-1026-40.jpg?v=1753975095', 'url': 'https://smartmaster.com.my/products/skinny-fit-black-trousers'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Skinny Fit White Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-1026-01.jpg?v=1753974518', 'url': 'https://smartmaster.com.my/products/skinny-fit-white-trousers'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Windowpane Trousers Grey', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-3015-35.jpg?v=1753967229', 'url': 'https://smartmaster.com.my/products/windowpane-trousers-grey'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Pinstripe Black Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0408-92001-40.jpg?v=1753965945', 'url': 'https://smartmaster.com.my/products/pinstripe-black-trousers'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Checkered Trousers Grey', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/040-91014-35.jpg?v=1754537485', 'url': 'https://smartmaster.com.my/products/checkered-trousers-grey'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Checkered Trousers Blue', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0408-91014-38.jpg?v=1754537360', 'url': 'https://smartmaster.com.my/products/checkered-trousers-blue'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Windowpane Trousers Grey Slim Fit', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-91016-25.jpg?v=1753975617', 'url': 'https://smartmaster.com.my/products/windowpane-trousers-grey-slim-fit'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Skinny Fit Blue Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-1026-28.jpg?v=1753974839', 'url': 'https://smartmaster.com.my/products/skinny-fit-blue-trousers'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Windowpane Trousers Blue', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-3015-28.jpg?v=1753966806', 'url': 'https://smartmaster.com.my/products/windowpane-trousers-blue'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Pinstripe Pastel Yellow Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0408-92001-13.jpg?v=1753964442', 'url': 'https://smartmaster.com.my/products/pinstripe-pastel-yellow-trousers'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Checkered Trousers Light Blue', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0408-91014-28_front.jpg?v=1755158846', 'url': 'https://smartmaster.com.my/products/checkered-trousers-light-blue'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Windowpane Trousers Blue Slim Fit', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-91016-38_front.jpg?v=1755158869', 'url': 'https://smartmaster.com.my/products/windowpane-trousers-blue-slim-fit'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Beige Trousers Skinny Fit', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-1026-13_front.jpg?v=1755158892', 'url': 'https://smartmaster.com.my/products/biege-trousers-skinny-fit'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Pinstripe Grey Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0408-92001_front.jpg?v=1755158926', 'url': 'https://smartmaster.com.my/products/pinstripe-grey-trousers'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Windowpane Trousers Light Grey', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/0407-3015-15_front.jpg?v=1755158956', 'url': 'https://smartmaster.com.my/products/checkered-trousers-light-grey'}
+2026-01-01 16:19:31 [scrapy.core.scraper] DEBUG: Scraped from <200 https://smartmaster.com.my/collections/formal-trousers/products.json?limit=250&page=1>
+{'name': 'Regular Fit Trousers', 'image': 'https://cdn.shopify.com/s/files/1/0647/3377/3884/files/pants2.jpg?v=1737694276', 'url': 'https://smartmaster.com.my/products/regular-fit-trousers'}
+2026-01-01 16:19:31 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-01-01 16:19:31 [scrapy.extensions.feedexport] INFO: Stored json feed (44 items) in: smart_master.json
+2026-01-01 16:19:31 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 2011,
+ 'downloader/request_count': 3,
+ 'downloader/request_method_count/GET': 3,
+ 'downloader/response_bytes': 38702,
+ 'downloader/response_count': 3,
+ 'downloader/response_status_count/200': 3,
+ 'elapsed_time_seconds': 3.081178,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 1, 1, 8, 19, 31, 651416, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 489025,
+ 'httpcompression/response_count': 3,
+ 'item_scraped_count': 44,
+ 'items_per_minute': 880.0,
+ 'log_count/DEBUG': 50,
+ 'log_count/INFO': 11,
+ 'response_received_count': 3,
+ 'responses_per_minute': 60.0,
+ 'robotstxt/request_count': 1,
+ 'robotstxt/response_count': 1,
+ 'robotstxt/response_status_count/200': 1,
+ 'scheduler/dequeued': 2,
+ 'scheduler/dequeued/memory': 2,
+ 'scheduler/enqueued': 2,
+ 'scheduler/enqueued/memory': 2,
+ 'start_time': datetime.datetime(2026, 1, 1, 8, 19, 28, 570238, tzinfo=datetime.timezone.utc)}
+2026-01-01 16:19:31 [scrapy.core.engine] INFO: Spider closed (finished)
+[run-daily-tasks] Running import-products.js
+Import complete
+[run-daily-tasks] Writing last-scrape.json
+Wrote last-scrape.json at 2026-01-01T08:19:32.8888862Z

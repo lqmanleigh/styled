@@ -1,15 +1,1 @@
--- AlterTable
-ALTER TABLE "EventRecommendation" ALTER COLUMN "createdAt" SET DATA TYPE TIMESTAMP(3);
-
--- AlterTable
-ALTER TABLE "Product" ALTER COLUMN "sizeOptions" DROP DEFAULT;
-
--- AlterTable
-ALTER TABLE "UserEvent" ALTER COLUMN "startTime" SET DATA TYPE TIMESTAMP(3),
-ALTER COLUMN "endTime" SET DATA TYPE TIMESTAMP(3),
-ALTER COLUMN "createdAt" SET DATA TYPE TIMESTAMP(3),
-ALTER COLUMN "updatedAt" DROP DEFAULT,
-ALTER COLUMN "updatedAt" SET DATA TYPE TIMESTAMP(3);
-
--- AlterTable
-ALTER TABLE "WishlistItem" ALTER COLUMN "createdAt" SET DATA TYPE TIMESTAMP(3);
+-- No-op; replaced by later migration 20251220090000_add_events_recommendations_wishlist

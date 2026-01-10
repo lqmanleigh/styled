@@ -60,7 +60,7 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "my_scraper.pipelines.NormalizeAndDedupePipeline": 300,
+    "my_scraper.pipelines.DbStorePipeline": 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -99,8 +99,13 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30000  # 30s
 PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": True}
 
-# (Optional) FEEDS output – enable if you want default file output
-# FEEDS = {
-#     "products.json": {"format": "json", "encoding": "utf8", "indent": 2},
-# }
+# Per-spider JSON feeds so admin can download brand files directly
+FEEDS = {
+    "%(name)s.json": {
+        "format": "json",
+        "encoding": "utf8",
+        "indent": 2,
+        "overwrite": True,
+    },
+}
 
