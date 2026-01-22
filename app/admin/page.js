@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 
 export default function AdminPage() {
+
+  const [rules, setRules] = useState([]);
+  const [ruleCategory, setRuleCategory] = useState("formal");
+  const [ruleKeyword, setRuleKeyword] = useState("");
+  const [ruleMessage, setRuleMessage] = useState("");
+  const [ruleError, setRuleError] = useState("");
+  const [ruleLoading, setRuleLoading] = useState(false);
   const { data: session, status } = useSession();
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
@@ -11,6 +18,8 @@ export default function AdminPage() {
   const [scrapeRunning, setScrapeRunning] = useState("");
   const [scrapeMessage, setScrapeMessage] = useState("");
   const [selectedSpider, setSelectedSpider] = useState("all");
+
+  const ADMIN_TOKEN = process.env.NEXT_PUBLIC_ADMIN_TOKEN;
 
   const loadUsers = () => {
     return fetch("/api/admin/users")
@@ -24,40 +33,135 @@ export default function AdminPage() {
       });
   };
 
-  useEffect(() => {
-    if (status !== "authenticated") return;
-    if (session?.user?.role !== "ADMIN") {
-      setError("You do not have access to this page.");
+  const loadRules = async () => {
+  const res = await fetch("/api/admin/recommendation", {
+    headers: { "x-admin-token": ADMIN_TOKEN },
+    cache: "no-store",
+  });
+  const data = await res.json();
+  setRules(data.rules || []);
+  };
+
+  const handleDeleteKeyword = async (id) => {
+    if (!confirm("Delete this keyword?")) return;
+
+    try {
+      const res = await fetch("/api/admin/recommendation", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-token": ADMIN_TOKEN,
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (!res.ok) {
+        setRuleError("Failed to delete keyword");
+        return;
+      }
+
+      setRuleMessage("Keyword deleted");
+      loadRules();
+    } catch {
+      setRuleError("Failed to delete keyword");
+    }
+  };
+
+  const handleSaveKeyword = async () => {
+    setRuleError("");
+    setRuleMessage("");
+    setRuleLoading(true);
+
+    try {
+      const res = await fetch("/api/admin/recommendation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-token": ADMIN_TOKEN,
+        },
+        body: JSON.stringify({
+          category: ruleCategory,
+          keyword: ruleKeyword,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.status === 409) {
+        setRuleError(data.message);
+        return;
+      }
+
+      if (!res.ok) {
+      setRuleError(data?.message || data?.error || "Failed to save keyword");
       return;
     }
-    loadUsers();
-    fetch("/api/admin/scrape-status", { cache: "no-store" })
-      .then(async (res) => {
-        const data = await res.json().catch(() => ({}));
-        if (!res.ok) throw new Error(data?.error || "Failed to load scrape status");
-        setScrapeStatus({
-          status: data?.status || null,
-          timestamp: data?.timestamp || null,
-          source: data?.source || null,
-          spiders: data?.spiders || {},
-        });
-      })
-      .catch(() => {
-        setScrapeStatus({ status: null, timestamp: null, source: null, spiders: {} });
+
+      setRuleMessage("Keyword saved successfully");
+      setRuleKeyword("");
+      loadRules();
+    } finally {
+      setRuleLoading(false);
+    }
+  };
+
+
+  useEffect(() => {
+  if (status !== "authenticated") return;
+
+  if (session?.user?.role !== "ADMIN") {
+    setError("You do not have access to this page.");
+    return;
+  }
+
+  loadUsers();
+  loadRules();
+
+  fetch("/api/admin/scrape-status", { cache: "no-store" })
+    .then(async (res) => {
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data?.error || "Failed to load scrape status");
+      setScrapeStatus({
+        status: data?.status || null,
+        timestamp: data?.timestamp || null,
+        source: data?.source || null,
+        spiders: data?.spiders || {},
       });
-  }, [status, session]);
+    })
+    .catch(() => {
+      setScrapeStatus({
+        status: null,
+        timestamp: null,
+        source: null,
+        spiders: {},
+      });
+    });
+}, [status, session]);
+
 
   const handleRunScrape = async (spider) => {
     setScrapeRunning(spider);
     setScrapeMessage("");
+
     try {
       const res = await fetch("/api/admin/scrape-all", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        headers: { "Content-Type": "application/json",
+                   "x-admin-token": ADMIN_TOKEN,
+         },
         body: JSON.stringify({ spider }), // accepted but ignored by scrape-all
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data?.error || "Failed to trigger scrape");
+      if (!res.ok) {
+  const msg =
+    data?.stderr ||
+    data?.stdout ||
+    data?.error ||
+    `Failed at step: ${data?.step || "unknown"}`;
+
+  throw new Error(msg);
+}
       setScrapeMessage(`Scrape started and completed.`);
     } catch (err) {
       setScrapeMessage(err?.message || "Failed to trigger scrape");
@@ -131,43 +235,117 @@ export default function AdminPage() {
         {/* Scrape Controls */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
           <div className="p-6 space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-wider text-gray-500 font-semibold">Data Operations</p>
-                <h2 className="text-2xl font-bold text-gray-900">Scrape Products</h2>
-                <p className="text-sm text-gray-600">Run spiders individually or all at once</p>
-              </div>
+            <div>
+              <p className="text-xs uppercase tracking-wider text-gray-500 font-semibold">
+                Data Operations
+              </p>
+              <h2 className="text-2xl font-bold text-gray-900">
+                Scrape Products
+              </h2>
+              <p className="text-sm text-gray-600">
+                Run all spiders to update product data
+              </p>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
-              <select
-                value={selectedSpider}
-                onChange={(e) => setSelectedSpider(e.target.value)}
-                className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
-                disabled={!!scrapeRunning}
-              >
-                <option value="all">Run All</option>
-                <option value="aegis" disabled>Run All (only)</option>
-                <option value="smartmaster" disabled>Run All (only)</option>
-                <option value="tomaz" disabled>Run All (only)</option>
-              </select>
+
+            <div className="flex items-center gap-3">
               <button
-                onClick={() => handleRunScrape(selectedSpider)}
+                onClick={() => handleRunScrape("all")}
                 disabled={!!scrapeRunning}
-                className={`px-4 py-2 rounded-xl text-sm font-medium border transition ${
+                className={`px-6 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 ${
                   scrapeRunning
-                    ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
-                    : "bg-white text-gray-800 border-gray-300 hover:bg-gray-50"
+                    ? "bg-gray-100 text-gray-400 cursor-not-allowed border border-gray-200"
+                    : "bg-green-600 text-white hover:bg-green-700"
                 }`}
                 type="button"
               >
-                {scrapeRunning ? `Running ${scrapeRunning}...` : "Run"}
+                {scrapeRunning && (
+                  <span className="inline-block h-4 w-4 rounded-full border-2 border-gray-300 border-t-transparent animate-spin" />
+                )}
+                {scrapeRunning ? "Running scrape..." : "Scrape All Products"}
               </button>
             </div>
-            {scrapeMessage && (
+
+            {/* Friendly running message */}
+            {scrapeRunning && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+                ⏳ <strong>Please wait.</strong> This process may take a few minutes while we collect and update product data.
+                <br />
+                You can stay on this page — we’ll notify you once it’s done.
+              </div>
+            )}
+
+            {scrapeMessage && !scrapeRunning && (
               <div className="text-sm text-gray-700">{scrapeMessage}</div>
             )}
           </div>
         </div>
+
+
+        {/* Recommendation Rules */}
+        <div className="bg-white rounded-2xl shadow-lg border p-6 space-y-6">
+          <h2 className="text-2xl font-bold">Recommendation Keywords</h2>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            <select
+              value={ruleCategory}
+              onChange={(e) => setRuleCategory(e.target.value)}
+              className="border rounded px-3 py-2"
+            >
+              <option value="formal">Formal</option>
+              <option value="casual">Casual</option>
+              <option value="streetwear">Streetwear</option>
+            </select>
+
+            <input
+              value={ruleKeyword}
+              onChange={(e) => setRuleKeyword(e.target.value)}
+              placeholder="e.g. interview"
+              className="border rounded px-3 py-2"
+            />
+
+            <button
+              onClick={handleSaveKeyword}
+              disabled={ruleLoading}
+              className="bg-green-600 text-white rounded px-4 py-2"
+            >
+              Add Keyword
+            </button>
+          </div>
+
+          {ruleError && <p className="text-red-600">{ruleError}</p>}
+          {ruleMessage && <p className="text-green-600">{ruleMessage}</p>}
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {rules.map((r) => (
+              <div key={r.id} className="border rounded p-4">
+                <h3 className="font-semibold capitalize">{r.targetCategory}</h3>
+                <ul className="list-disc ml-4 text-sm">
+                  <ul className="space-y-1 text-sm">
+                    {r.keywords
+                      .filter(k => k.enabled)
+                      .map(k => (
+                        <li
+                          key={k.id}
+                          className="flex items-center justify-between gap-2"
+                        >
+                          <span>{k.keyword}</span>
+
+                          <button
+                            onClick={() => handleDeleteKeyword(k.id)}
+                            className="text-red-500 hover:text-red-700 text-xs"
+                          >
+                            Delete
+                          </button>
+                        </li>
+                      ))}
+                  </ul>
+
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
 
         {/* Users Table Card */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
@@ -268,3 +446,6 @@ export default function AdminPage() {
     </main>
   );
 }
+
+
+

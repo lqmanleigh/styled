@@ -13,7 +13,9 @@ async function loadProducts() {
 
 export default async function AegisShopPage() {
   const products = await loadProducts();
-  const hasData = products.length > 0;
+  const nonFashion = products.filter((p) => p.isFashion === false);
+  const visible = products.filter((p) => p.isFashion !== false);
+  const hasData = visible.length > 0;
   const lastScraped =
     products.reduce((latest, item) => {
       const dtSource = item.scrapedAt || item.createdAt;
@@ -78,7 +80,7 @@ export default async function AegisShopPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900">{products.length}</p>
+                  <p className="text-2xl font-bold text-gray-900">{visible.length}</p>
                   <p className="text-sm text-gray-600">Products Available</p>
                 </div>
               </div>
@@ -95,13 +97,13 @@ export default async function AegisShopPage() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
-                <span>{products.length} items</span>
+                <span>{visible.length} items</span>
               </div>
             </div>
 
             {hasData ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {products.map((item, i) => (
+                {visible.map((item, i) => (
                   <div
                     key={item.url || `${item.name || "item"}-${i}`}
                     className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden border border-gray-100 transition-all duration-300 hover:-translate-y-1"
@@ -180,6 +182,56 @@ export default async function AegisShopPage() {
               </div>
             )}
           </div>
+
+          {/* Non-fashion (filtered out) section */}
+          {nonFashion.length > 0 && (
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900">Flagged as Not Fashion</h2>
+              <p className="text-sm text-gray-600">
+                Items automatically flagged as not fashion content.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {nonFashion.map((item, i) => (
+                  <div
+                    key={item.url || `${item.name || "item"}-nonfashion-${i}`}
+                    className="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm"
+                  >
+                    <div className="relative h-48 mb-3 overflow-hidden rounded-xl bg-gray-50 border">
+                      {item.image ? (
+                        <Image
+                          src={item.image}
+                          alt={item.name || "Product image"}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                          No image
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-sm font-medium text-gray-900 line-clamp-2">
+                      {item.name || "Untitled item"}
+                    </p>
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-gray-700 hover:text-gray-900 mt-3"
+                      >
+                        View product
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           
         </div>

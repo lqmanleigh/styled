@@ -18,8 +18,41 @@ const ExternalLink = makeIcon("🔗");
 const Trash2 = makeIcon("🗑️");
 const Sparkles = makeIcon("✨");
 
+
+
 export default function UserWishlistPage() {
   const { data: session, status } = useSession();
+
+  const [visibleCountByCategory, setVisibleCountByCategory] = useState({
+    formal: 2,
+    casual: 2,
+    streetwear: 2,
+  });
+
+  const [shuffleSeedByCategory, setShuffleSeedByCategory] = useState({
+    formal: 0,
+    casual: 0,
+    streetwear: 0,
+  });
+
+  const shuffleArray = (arr) => {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  };
+
+  const getVisibleItems = (category, pool = []) => {
+    const count = visibleCountByCategory[category] ?? 2;
+
+    // this seed exists only to force reshuffle
+    shuffleSeedByCategory[category];
+
+    return shuffleArray(pool).slice(0, count);
+  };
+
   const [events, setEvents] = useState([]);
   const [calendarStatus, setCalendarStatus] = useState("idle");
   const [calendarError, setCalendarError] = useState("");
@@ -31,10 +64,10 @@ export default function UserWishlistPage() {
 
   useEffect(() => {
     if (status !== "authenticated") return;
-    
+
     setCalendarStatus("loading");
     setWishlistStatus("loading");
-    
+
     // Fetch wishlist
     fetch("/api/wishlist")
       .then(async (res) => {
@@ -67,45 +100,32 @@ export default function UserWishlistPage() {
       });
   }, [status]);
 
+  // ✅ Recommendations: DB rules handled in backend
   useEffect(() => {
-    if (events.length === 0) return;
+    // Only run when user is logged in and calendar connected
+    if (status !== "authenticated") return;
+    if (calendarStatus !== "connected") {
+      setRecommendations([]);
+      setRecStatus("idle");
+      return;
+    }
+    if (events.length === 0) {
+      setRecommendations([]);
+      setRecStatus("ready");
+      return;
+    }
+
     setRecStatus("loading");
 
-    const formalKeywords = ["interview", "corporate", "business", "wedding", "ceremony", "conference", "presentation", "exam", "award", "meeting"];
-    const casualKeywords = ["outing", "shopping", "gathering", "hangout"];
-    const streetKeywords = ["social", "concert", "fashion", "content", "shoot"];
-
-    const classify = (text) => {
-      const lower = (text || "").toLowerCase();
-      if (formalKeywords.some((k) => lower.includes(k))) return "formal";
-      if (casualKeywords.some((k) => lower.includes(k))) return "casual";
-      if (streetKeywords.some((k) => lower.includes(k))) return "streetwear";
-      return null;
-    };
-
-    fetch("/api/products")
-      .then((res) => res.json())
-      .then((products) => {
-        const productList = Array.isArray(products) ? products : [];
-        const recs = events.map((ev) => {
-          const category = classify(ev.summary);
-          const take = category === "formal" ? 3 : category === "casual" ? 2 : category === "streetwear" ? 1 : 2;
-          const matches = category
-            ? productList.filter((p) => p.category && p.category.toLowerCase() === category)
-            : [];
-          return {
-            eventId: ev.id,
-            title: ev.summary || "Untitled Event",
-            start: ev.start || null,
-            category,
-            items: matches.slice(0, take),
-          };
-        });
-        setRecommendations(recs);
+    fetch("/api/recommendations")
+      .then(async (res) => {
+        const data = await res.json().catch(() => ([]));
+        if (!res.ok) throw new Error(data?.error || "Failed to load recommendations");
+        setRecommendations(Array.isArray(data) ? data : []);
         setRecStatus("ready");
       })
       .catch(() => setRecStatus("error"));
-  }, [events]);
+  }, [status, calendarStatus, events]);
 
   const removeWishlistItem = async (id) => {
     try {
@@ -142,10 +162,11 @@ export default function UserWishlistPage() {
       error: { label: "Error", color: "bg-red-100 text-red-800" },
       idle: { label: "Idle", color: "bg-gray-100 text-gray-800" },
     };
-    
+
     const { label, color } = config[status] || config.idle;
     return <span className={`px-3 py-1 rounded-full text-xs font-medium ${color}`}>{label}</span>;
   };
+
 
   return (
     <Layout>
@@ -189,7 +210,7 @@ export default function UserWishlistPage() {
               <Heart className="text-red-500" size={24} />
             </div>
           </div>
-          
+
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <div className="flex items-center justify-between">
               <div>
@@ -199,12 +220,14 @@ export default function UserWishlistPage() {
               <Calendar className="text-blue-500" size={24} />
             </div>
           </div>
-          
+
           <div className="bg-white rounded-xl border border-gray-200 p-4">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Recommendations</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{recommendations.reduce((acc, rec) => acc + rec.items.length, 0)}</p>
+                <p className="text-2xl font-bold text-gray-900 mt-1">
+                  {recommendations.reduce((acc, rec) => acc + (rec.pool?.length || 0), 0)}
+                </p>
               </div>
               <Sparkles className="text-purple-500" size={24} />
             </div>
@@ -428,19 +451,28 @@ export default function UserWishlistPage() {
                         </span>
                       </div>
                       <div className="space-y-4">
+
                         {group.data.slice(0, 2).map((rec) => (
                           <div key={rec.eventId} className="border border-gray-200 rounded-lg p-4">
                             <div className="mb-3">
-                              <h5 className="font-medium text-gray-900 truncate">{rec.title}</h5>
+                              <h5 className="font-medium text-gray-900 truncate">
+                                {rec.title}
+                              </h5>
+
                               {rec.start && (
-                                <p className="text-xs text-gray-500 mt-1">
-                                  {new Date(rec.start).toLocaleDateString()}
+                                <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
+                                  📅 {new Date(rec.start).toLocaleDateString("en-GB", {
+                                    day: "2-digit",
+                                    month: "long",
+                                    year: "numeric",
+                                  })}
                                 </p>
                               )}
                             </div>
-                            {rec.items.length > 0 ? (
+
+                            {rec.pool && rec.pool.length > 0 ? (
                               <div className="space-y-3">
-                                {rec.items.map((item, idx) => (
+                                {getVisibleItems(rec.category, rec.pool).map((item, idx) => (
                                   <a
                                     key={idx}
                                     href={item.url}
@@ -472,6 +504,54 @@ export default function UserWishlistPage() {
                             ) : (
                               <p className="text-sm text-gray-500 text-center py-2">No matching items found</p>
                             )}
+
+                            <div className="flex gap-2 mt-3">
+                              {/* Change Suggestions */}
+                              <button
+                                onClick={() =>
+                                  setShuffleSeedByCategory((prev) => ({
+                                    ...prev,
+                                    [rec.category]: Math.random(),
+                                  }))
+                                }
+                                className="text-xs px-3 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                              >
+                                Change Suggestions
+                              </button>
+
+                              {/* Show More */}
+                              <button
+                                onClick={() =>
+                                  setVisibleCountByCategory((prev) => ({
+                                    ...prev,
+                                    [rec.category]: prev[rec.category] + 1,
+                                  }))
+                                }
+                                className="text-xs px-3 py-1 rounded bg-green-100 hover:bg-green-200 text-green-700"
+                              >
+                                Show More
+                              </button>
+
+                              {/* Show Less */}
+                              <button
+                                onClick={() =>
+                                  setVisibleCountByCategory((prev) => ({
+                                    ...prev,
+                                    [rec.category]: Math.max(2, prev[rec.category] - 1),
+                                  }))
+                                }
+                                disabled={visibleCountByCategory[rec.category] <= 2}
+                                className={`text-xs px-3 py-1 rounded ${
+                                  visibleCountByCategory[rec.category] <= 2
+                                    ? "bg-gray-50 text-gray-400 cursor-not-allowed"
+                                    : "bg-red-100 hover:bg-red-200 text-red-700"
+                                }`}
+                              >
+                                Show Less
+                              </button>
+                            </div>
+
+
                           </div>
                         ))}
                       </div>

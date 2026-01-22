@@ -71,6 +71,11 @@ model Product {
   brand         String?
   createdAt     DateTime       @default(now())
   scrapedAt     DateTime       @default(now())
+  aiLabel       String?        // "Fashion" | "Not Fashion"
+  isFashion     Boolean?
+  category      String?
+  aiProcessedAt DateTime?
+
   wishlistItems WishlistItem[] @relation("ProductWishlist")
 }
 
@@ -86,28 +91,32 @@ model WishlistItem {
   user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model AegisProduct {
-  id        String   @id @default(cuid())
-  name      String?
-  image     String?
-  url       String?  @unique
-  scrapedAt DateTime @default(now())
+model EventRule {
+  id             String   @id @default(cuid())
+  name           String
+  targetCategory String   @unique// formal | casual | streetwear
+  priority       Int      @default(0)
+  enabled        Boolean  @default(true) 
+
+  keywords       EventKeyword[]
+
+  createdAt      DateTime @default(now())
+
+  @@index([targetCategory])
 }
 
-model TomazProduct {
+model EventKeyword {
   id        String   @id @default(cuid())
-  name      String?
-  image     String?
-  url       String?  @unique
-  scrapedAt DateTime @default(now())
-}
+  keyword   String   @unique
+  enabled   Boolean  @default(true)
 
-model SmartMasterProduct {
-  id        String   @id @default(cuid())
-  name      String?
-  image     String?
-  url       String?  @unique
-  scrapedAt DateTime @default(now())
+  ruleId   String
+  rule     EventRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([keyword])
+  @@index([ruleId])
 }
 
 model UserEvent {

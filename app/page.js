@@ -94,13 +94,15 @@ export default function HomePage() {
     <main className="min-h-screen bg-gradient-to-b from-white to-green-50">
       {/* Navbar - unchanged as requested */}
       <header className="flex items-center justify-between px-8 py-4 bg-white shadow">
-        <h1 className="text-2xl font-bold text-green-600">Styled</h1>
+        <img
+          src="https://res.cloudinary.com/djsbnythn/image/upload/v1768718065/logo_bjkqh7.png"
+          alt="Styled Logo"
+          className="h-12 w-auto"
+        />
 
         <nav className="flex gap-6 text-sm font-medium">
           <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
           <Link href="/shop">Shop</Link>
-          <Link href="/contact">Contact</Link>
           <Link href="/wishlist" className="font-semibold text-green-600">Wishlist</Link>
         </nav>
       </header>
@@ -120,8 +122,7 @@ export default function HomePage() {
                   </span>
                 </h1>
                 <p className="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl">
-                  Explore top styles curated from multiple online stores, powered by
-                  AI and real-time web data. Shop smart, shop contextually.
+                  Explore top styles curated from multiple online stores, suggestion, and real-time web data. Shop smart, shop occasionally.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -132,15 +133,6 @@ export default function HomePage() {
                   Start Shopping
                   <ChevronRight size={20} />
                 </Link>
-                {!session && (
-                  <Link
-                    href="/api/auth/signin"
-                    className="inline-flex items-center justify-center gap-2 border-2 border-green-600 text-green-600 px-8 py-3.5 rounded-xl font-semibold hover:bg-green-50 transition-all"
-                  >
-                    <Calendar size={20} />
-                    Connect Calendar
-                  </Link>
-                )}
               </div>
             </div>
             
@@ -150,7 +142,7 @@ export default function HomePage() {
                 <div className="aspect-[4/3] relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10" />
                   <Image
-                    src="/images/fashion-banner.png"
+                    src="https://res.cloudinary.com/djsbnythn/image/upload/v1768790560/All_collection_blog_banner_1024x1024_scr3ld.webp"
                     alt="Fashion Banner"
                     fill
                     className="object-cover"
@@ -175,109 +167,6 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="px-4 md:px-10 py-16 md:py-24 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How <span className="text-green-600">Styled</span> Works
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our platform combines AI, real-time data, and personalized insights to transform your shopping experience
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto">
-            {/* Active Step Display */}
-            <div className="mb-12">
-              <div className={`bg-gradient-to-br ${current.gradient} bg-opacity-5 rounded-2xl border border-gray-100 shadow-lg overflow-hidden`}>
-                <div className="p-8 md:p-12">
-                  <div className="flex flex-col md:flex-row items-center gap-8">
-                    <div className="flex-shrink-0">
-                      <div className={`w-24 h-24 rounded-2xl bg-gradient-to-br ${current.gradient} flex items-center justify-center text-white text-4xl shadow-lg`}>
-                        {current.icon}
-                      </div>
-                    </div>
-                    <div className="text-center md:text-left">
-                      <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/80 backdrop-blur-sm rounded-full text-gray-800 text-sm font-medium mb-4">
-                        <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                        Step {stepIndex + 1} of {howSteps.length}
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                        {current.title}
-                      </h3>
-                      <p className="text-lg text-gray-600 max-w-2xl">
-                        {current.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation Controls */}
-              <div className="flex items-center justify-between mt-8">
-                <button
-                  onClick={() => setStepIndex((prev) => (prev - 1 + howSteps.length) % howSteps.length)}
-                  className="flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all"
-                  type="button"
-                  aria-label="Previous step"
-                >
-                  <ChevronLeft size={20} />
-                  Previous
-                </button>
-                
-                <div className="flex gap-3">
-                  {howSteps.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setStepIndex(i)}
-                      className={`h-3 rounded-full transition-all ${
-                        i === stepIndex
-                          ? `w-12 bg-gradient-to-r ${current.gradient}`
-                          : "w-8 bg-gray-300 hover:bg-gray-400"
-                      }`}
-                      aria-label={`Go to step ${i + 1}`}
-                      type="button"
-                    />
-                  ))}
-                </div>
-                
-                <button
-                  onClick={() => setStepIndex((prev) => (prev + 1) % howSteps.length)}
-                  className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-500 text-white rounded-xl hover:shadow-lg transition-all"
-                  type="button"
-                  aria-label="Next step"
-                >
-                  Next
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            </div>
-
-            {/* All Steps Grid */}
-            <div className="grid md:grid-cols-3 gap-6">
-              {howSteps.map((step, index) => (
-                <div
-                  key={index}
-                  className={`p-6 rounded-xl border-2 transition-all cursor-pointer hover:shadow-lg ${
-                    index === stepIndex
-                      ? `border-green-500 bg-gradient-to-br ${step.gradient} bg-opacity-5`
-                      : "border-gray-200 bg-white hover:border-gray-300"
-                  }`}
-                  onClick={() => setStepIndex(index)}
-                >
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-2xl mb-4`}>
-                    {step.icon}
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>

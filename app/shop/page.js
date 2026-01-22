@@ -7,7 +7,7 @@ const brands = [
     name: "Aegis 601",
     desc: "AEGIS601 is a Malaysian streetwear label that merges modern urban aesthetics with local cultural nuance. Since its founding, it has gained momentum for delivering high-quality, thoughtfully designed pieces — from bold denim and statement tees to unique capsule collections. Collaborating with regional peers and actively engaging with a growing community, AEGIS601 aims to “forge the next artifact”: garments that resonate beyond fashion trends and reflect identity, creativity, and style.",
     href: "/shop/aegis",
-    img: "/images/shop1.png",
+    img: "https://res.cloudinary.com/djsbnythn/image/upload/v1768791162/aegis_tlnevx.jpg",
     style: "Streetwear",
     styleColor: "bg-purple-100 text-purple-800 border-purple-200",
     styleIcon: (
@@ -20,7 +20,7 @@ const brands = [
     name: "Smart Master",
     desc: "Smart Master is a Malaysian men's-wear label that blends decades of tailoring heritage with modern style — offering shirts and trousers, in both ready-made and tailor-made form. Whether for formal occasions, work, or smart-casual wear, Smart Master delivers quality craftsmanship, fine fits, and timeless elegance — giving every man the confidence to dress sharp and suitable for any occasion.",
     href: "/shop/smartmaster",
-    img: "/images/shop2.png",
+    img: "https://res.cloudinary.com/djsbnythn/image/upload/v1768791321/smartmaster_usnuqm.webp",
     style: "Casual & Smart Casual",
     styleColor: "bg-blue-100 text-blue-800 border-blue-200",
     styleIcon: (
@@ -33,7 +33,7 @@ const brands = [
     name: "Tomaz",
     desc: "Tomaz is widely known in Malaysia for value-driven men's fashion, and their blazer collection is one of the standout categories in their modern menswear lineup. Bringing together classic tailoring and accessible pricing, Tomaz blazers are designed for men who want to look sharp without overspending.",
     href: "/shop/tomaz",
-    img: "/images/shop3.png",
+    img: "https://res.cloudinary.com/djsbnythn/image/upload/v1768791172/tomaz_kdminf.jpg",
     style: "Formal & Business Wear",
     styleColor: "bg-gray-100 text-gray-800 border-gray-200",
     styleIcon: (
@@ -53,7 +53,7 @@ export default function ShopPage() {
           <div className="text-center space-y-6">
             <div className="inline-flex items-center gap-3 px-6 py-3 bg-green-100 rounded-full border border-green-200">
               <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-              <p className="text-sm uppercase text-green-700 font-bold tracking-widest">Premium Brand Catalog</p>
+              <p className="text-sm uppercase text-green-700 font-bold tracking-widest">Brand Catalog</p>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
               Discover Exclusive Brands

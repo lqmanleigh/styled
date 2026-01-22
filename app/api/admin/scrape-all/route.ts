@@ -5,7 +5,14 @@ import { authOptions } from "../../auth/[...nextauth]/route";
 
 function run(cmd: string, args: string[], cwd: string) {
   return new Promise<{ code: number; stdout: string; stderr: string }>((resolve) => {
-    const child = spawn(cmd, args, { cwd, shell: true });
+    const child = spawn(cmd, args, {
+      cwd,
+      shell: true,
+      env: {
+        ...process.env,
+        PYTHONPATH: cwd, // 🔥 THIS FIXES IT
+      },
+    });
 
     let stdout = "";
     let stderr = "";
@@ -13,21 +20,25 @@ function run(cmd: string, args: string[], cwd: string) {
     child.stdout.on("data", (d) => (stdout += d.toString()));
     child.stderr.on("data", (d) => (stderr += d.toString()));
 
-    child.on("close", (code) => resolve({ code: code ?? 0, stdout, stderr }));
+    child.on("close", (code) =>
+      resolve({ code: code ?? 0, stdout, stderr })
+    );
   });
 }
 
 let isRunning = false;
 
-export async function POST(req: Request) {
+export async function POST() {
   const session = await getServerSession(authOptions);
   if (!session || session.user?.role !== "ADMIN") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Prevent double-click / concurrent runs
   if (isRunning) {
-    return NextResponse.json({ error: "A scrape is already running" }, { status: 409 });
+    return NextResponse.json(
+      { error: "A scrape is already running" },
+      { status: 409 }
+    );
   }
 
   isRunning = true;
@@ -36,24 +47,26 @@ export async function POST(req: Request) {
     const projectRoot = process.cwd();
     const scraperRoot = `${projectRoot}/my_scraper`;
 
-    // Use one shared timestamp/run id for everything
     const scrapeRunId = new Date().toISOString().replace(/[:.]/g, "-");
 
-    // 1) Run spiders
+    // 1️⃣ Run Scrapy spiders
     const py = await run(
-      "python",
+      "C:/Users/User/Documents/Projects/styled/my_scraper/venv/Scripts/python.exe",
       ["-m", "my_scraper.spiders.run_all_spiders", "--scrape_run_id", scrapeRunId],
       scraperRoot
     );
 
+
+
+
     if (py.code !== 0) {
       return NextResponse.json(
-        { step: "scrape", code: py.code, stdout: py.stdout, stderr: py.stderr },
+        { step: "scrape", stdout: py.stdout, stderr: py.stderr },
         { status: 500 }
       );
     }
 
-    // 2) Import into DB
+    // 2️⃣ Import into DB
     const imp = await run(
       "node",
       ["scripts/import-products.js", "--scrape_run_id", scrapeRunId],
@@ -62,7 +75,7 @@ export async function POST(req: Request) {
 
     if (imp.code !== 0) {
       return NextResponse.json(
-        { step: "import", code: imp.code, stdout: imp.stdout, stderr: imp.stderr },
+        { step: "import", stdout: imp.stdout, stderr: imp.stderr },
         { status: 500 }
       );
     }
@@ -70,8 +83,8 @@ export async function POST(req: Request) {
     return NextResponse.json({
       ok: true,
       scrapeRunId,
-      scrape: { stdout: py.stdout, stderr: py.stderr },
-      import: { stdout: imp.stdout, stderr: imp.stderr },
+      scrape: py.stdout,
+      import: imp.stdout,
     });
   } finally {
     isRunning = false;

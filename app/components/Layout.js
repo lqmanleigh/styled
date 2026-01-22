@@ -10,24 +10,16 @@ export default function Layout({ children }) {
     <main className="bg-green-50 min-h-screen text-gray-800">
       {/* Navbar */}
       <header className="flex items-center justify-between px-8 py-4 bg-white shadow">
-        <h1 className="text-2xl font-bold text-green-600">Styled</h1>
+        <img
+          src="https://res.cloudinary.com/djsbnythn/image/upload/v1768718065/logo_bjkqh7.png"
+          alt="Styled Logo"
+          className="h-12 w-auto"
+        />
 
-        <div className="flex items-center gap-2 w-1/3">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="w-full border border-gray-300 rounded-l-lg px-3 py-2 focus:outline-none"
-          />
-          <button className="bg-green-600 text-white px-4 py-2 rounded-r-lg hover:bg-green-700">
-            Search
-          </button>
-        </div>
 
         <nav className="flex gap-6 text-sm font-medium">
           <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
           <Link href="/shop">Shop</Link>
-          <Link href="/contact">Contact</Link>
           <Link href={wishlistHref} className="font-semibold text-green-600">Wishlist</Link>
         </nav>
       </header>
