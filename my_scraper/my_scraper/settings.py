@@ -21,11 +21,13 @@ ADDONS = {}
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-# Concurrency and throttling settings
-#CONCURRENT_REQUESTS = 16
-# Reasonable defaults for politeness
-CONCURRENT_REQUESTS_PER_DOMAIN = 1
-DOWNLOAD_DELAY = 1
+# ============================================
+# CONCURRENCY SETTINGS - SERVER OPTIMIZED
+# ============================================
+# Limit concurrent requests to prevent memory overload
+CONCURRENT_REQUESTS = 4                     # Default is 16 - too high for Playwright!
+CONCURRENT_REQUESTS_PER_DOMAIN = 1          # Keep at 1 for politeness
+DOWNLOAD_DELAY = 1                          # 1 second delay between requests
 
 # Disable cookies (enabled by default)
 #COOKIES_ENABLED = False
@@ -35,7 +37,7 @@ DOWNLOAD_DELAY = 1
 
 # Override the default request headers:
 #DEFAULT_REQUEST_HEADERS = {
-#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+#    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8",
 #    "Accept-Language": "en",
 #}
 
@@ -87,6 +89,9 @@ ITEM_PIPELINES = {
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
 
+# ============================================
+# PLAYWRIGHT SETTINGS - SERVER OPTIMIZED
+# ============================================
 # Enable Playwright
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
@@ -97,7 +102,62 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
 # Playwright tuning
 PLAYWRIGHT_DEFAULT_NAVIGATION_TIMEOUT = 30000  # 30s
-PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": True}
+
+# CRITICAL: These launch options prevent server crashes on Linux VPS
+PLAYWRIGHT_LAUNCH_OPTIONS = {
+    "headless": True,
+    "args": [
+        # CRITICAL: Prevents /dev/shm crashes on Linux servers
+        "--disable-dev-shm-usage",
+        
+        # Required for running as root user
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        
+        # Memory optimization flags
+        "--single-process",
+        "--no-zygote",
+        "--disable-gpu",
+        
+        # Disable unnecessary features to save memory
+        "--disable-extensions",
+        "--disable-background-networking",
+        "--disable-default-apps",
+        "--disable-sync",
+        "--disable-translate",
+        "--disable-background-timer-throttling",
+        "--disable-backgrounding-occluded-windows",
+        "--disable-renderer-backgrounding",
+        
+        # Additional performance flags
+        "--mute-audio",
+        "--hide-scrollbars",
+        "--metrics-recording-only",
+        "--no-first-run",
+        
+        # Limit memory usage
+        "--js-flags=--max-old-space-size=512",
+    ],
+}
+
+# Limit the number of browser contexts (tabs) to prevent memory overload
+PLAYWRIGHT_MAX_CONTEXTS = 2
+
+# Browser context settings
+PLAYWRIGHT_CONTEXTS = {
+    "default": {
+        "ignore_https_errors": True,
+        "java_script_enabled": True,
+    }
+}
+
+# Abort unnecessary resource types to save memory and bandwidth
+PLAYWRIGHT_ABORT_REQUEST = lambda req: req.resource_type in [
+    "image",
+    "media", 
+    "font",
+    "stylesheet",
+]
 
 # Per-spider JSON feeds so admin can download brand files directly
 FEEDS = {
@@ -108,4 +168,3 @@ FEEDS = {
         "overwrite": True,
     },
 }
-
